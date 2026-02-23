@@ -102,6 +102,7 @@ const ajouterAuPanier = (id) => {
   }
 };
 
+// --- 3. AFFICHER LE PANIER ---
 const getCommandes = () => {
   try {
     const data = fetchLocal('commandes').reverse();
@@ -196,6 +197,7 @@ const activerPanier = () => {
   });
 };
 
+// --- 5. METTRE À JOUR LE BADGE DU PANIER ---
 const nombreSurPanier = () => {
   const data = fetchLocal('commandes');
   const totalPan = document.getElementById('totalPan');
@@ -204,6 +206,7 @@ const nombreSurPanier = () => {
   }
 };
 
+// Initialisation au chargement de la page
 getProduits();
 getCommandes();
 nombreSurPanier();
