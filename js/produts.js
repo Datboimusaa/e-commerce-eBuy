@@ -86,9 +86,9 @@ const ajouterAuPanier = (id) => {
     const commande = {
       id: crypto.randomUUID(),
       produitId: produit.id,
-      nom: produit.nomProduit, // Adapté pour MockAPI
+      nom: produit.nomProduit,
       prix: produit.prix,
-      image: produit.urlImage, // Adapté pour MockAPI
+      image: produit.urlImage,
       quantite: 1,
     };
 
@@ -102,7 +102,6 @@ const ajouterAuPanier = (id) => {
   }
 };
 
-// --- 3. AFFICHER LE PANIER ---
 const getCommandes = () => {
   try {
     const data = fetchLocal('commandes').reverse();
@@ -197,7 +196,6 @@ const activerPanier = () => {
   });
 };
 
-// --- 5. METTRE À JOUR LE BADGE DU PANIER ---
 const nombreSurPanier = () => {
   const data = fetchLocal('commandes');
   const totalPan = document.getElementById('totalPan');
@@ -206,7 +204,6 @@ const nombreSurPanier = () => {
   }
 };
 
-// Initialisation au chargement de la page
 getProduits();
 getCommandes();
 nombreSurPanier();
