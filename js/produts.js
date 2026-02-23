@@ -1,5 +1,7 @@
-const lesProduits = document.getElementById('lesProduits');
-console.log(lesProduits);
+const API_URL = 'https://699cc75983e60a406a446756.mockapi.io/produits';
+
+let produitsDisponibles = [];
+
 const fetchLocal = (key) => {
   const data = localStorage.getItem(key);
   return data ? JSON.parse(data) : [];
@@ -9,34 +11,37 @@ const saveLocal = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
 
-const getProduits = () => {
+const getProduits = async () => {
   try {
-    const produits = fetchLocal('produits').reverse();
+    const response = await fetch(API_URL);
+    const produits = await response.json();
+    produitsDisponibles = produits.reverse();
 
+    const lesProduits = document.getElementById('lesProduits');
     let pros = '';
-    produits.forEach((produit) => {
+    produitsDisponibles.forEach((produit) => {
       pros += `
         <div class="w-75 bg-white rounded-xl border border-gray-200 shadow-lg overflow-hidden p-2">
           <div class="relative bg-primary-purple rounded-2xl mb-4 p-4 flex justify-center items-center h-56">
             <i class="bi bi-heart text-2xl text-gray-400 absolute top-4 right-4 cursor-pointer"></i>
             <div class="w-full h-full flex items-center justify-center">
-              <img src="${produit.image}" alt="Sneakers" class="max-h-55 w-60 object-contain" />
+              <img src="${produit.urlImage}" alt="${produit.nomProduit}" class="max-h-55 w-60 object-contain" />
             </div>
           </div>
 
           <div class="px-2">
             <div class="flex justify-between items-center mb-3">
-              <h1 class="text-xl font-medium text-text-color">${produit.nom}</h1>
+              <h1 class="text-xl font-medium text-text-color">${produit.nomProduit}</h1>
               <div class="flex items-center text-yellow-500">
                 <i class="bi bi-star-fill text-lg"></i>
                 <span class="ml-1 text-sm font-semibold text-text-color">4.7</span>
               </div>
             </div>
 
-            <p class="text-2xl font-bold text-text-color mb-5">${produit.prix} FCFA</p>
+            <p class="text-xl font-bold text-gray-500 mb-5">${produit.prix} FCFA</p>
 
             <button idPro="${produit.id}"
-              class="btnPro w-full cursor-pointer bg-primary text-white font-semibold py-3 px-3 rounded-xl flex items-center justify-center shadow-md hover:bg-amber-700 transition duration-150"
+              class="btnPro w-full cursor-pointer bg-[#8E5F44] text-white font-semibold py-3 px-3 rounded-xl flex items-center justify-center shadow-md hover:bg-amber-700 transition duration-150"
             >
               <i class="bi bi-cart3 text-xl mr-3"></i>
               Ajouter au Panier
@@ -45,7 +50,10 @@ const getProduits = () => {
         </div>
       `;
     });
-    lesProduits.innerHTML = pros;
+
+    if (lesProduits) {
+      lesProduits.innerHTML = pros;
+    }
 
     const clickPro = document.querySelectorAll('.btnPro');
     clickPro.forEach((btn) => {
@@ -57,10 +65,9 @@ const getProduits = () => {
       });
     });
   } catch (error) {
-    console.log(error);
+    console.log("Erreur lors du chargement des produits de l'API :", error);
   }
 };
-getProduits();
 
 const ajouterAuPanier = (id) => {
   try {
@@ -72,17 +79,16 @@ const ajouterAuPanier = (id) => {
       return;
     }
 
-    const produits = fetchLocal('produits');
-    const produit = produits.find((p) => p.id === id);
+    const produit = produitsDisponibles.find((p) => p.id === id);
 
     if (!produit) return;
 
     const commande = {
       id: crypto.randomUUID(),
       produitId: produit.id,
-      nom: produit.nom,
+      nom: produit.nomProduit, // Adapté pour MockAPI
       prix: produit.prix,
-      image: produit.image,
+      image: produit.urlImage, // Adapté pour MockAPI
       quantite: 1,
     };
 
@@ -96,6 +102,7 @@ const ajouterAuPanier = (id) => {
   }
 };
 
+// --- 3. AFFICHER LE PANIER ---
 const getCommandes = () => {
   try {
     const data = fetchLocal('commandes').reverse();
@@ -118,7 +125,7 @@ const getCommandes = () => {
     let content = '';
     data.forEach((produit) => {
       content += `
-       <div class="flex items-center justify-between bg-white border border-slate-100 rounded-2xl p-3 shadow-sm">
+       <div class="flex items-center justify-between bg-white border border-slate-100 rounded-2xl p-3 shadow-sm mb-2">
             <div class="flex items-center gap-4">
               <img src="${produit.image}" class="w-20 h-20 rounded-2xl object-cover" alt="Produit" />
               <div>
@@ -129,9 +136,9 @@ const getCommandes = () => {
             <div class="flex items-center gap-6">
               <span class="font-bold text-slate-800 text-lg">${produit.prix * produit.quantite} FCFA</span>
               <div class="join bg-slate-100 rounded-lg">
-                <button data-id="${produit.id}" class="btnMoins btn btn-ghost btn-xs join-item">-</button>
-                <button class="btn btn-ghost btn-xs join-item pointer-events-none">${produit.quantite}</button>
-                <button data-id="${produit.id}" class="btnPlus btn btn-ghost btn-xs join-item">+</button>
+                <button data-id="${produit.id}" class="btnMoins btn btn-ghost btn-xs join-item px-2">-</button>
+                <button class="btn btn-ghost btn-xs join-item pointer-events-none px-2">${produit.quantite}</button>
+                <button data-id="${produit.id}" class="btnPlus btn btn-ghost btn-xs join-item px-2">+</button>
               </div>
               <button data-id="${produit.id}" class="btnDeleteCommande btn btn-ghost text-red-400 hover:text-red-600 hover:bg-red-50 btn-sm">Supprimer</button>
             </div>
@@ -184,16 +191,22 @@ const activerPanier = () => {
         commandes = commandes.filter((c) => c.id !== id);
         saveLocal('commandes', commandes);
         getCommandes();
+        nombreSurPanier();
       }
     });
   });
 };
 
-getCommandes();
-
+// --- 5. METTRE À JOUR LE BADGE DU PANIER ---
 const nombreSurPanier = () => {
   const data = fetchLocal('commandes');
   const totalPan = document.getElementById('totalPan');
-  totalPan.textContent = data.length;
+  if (totalPan) {
+    totalPan.textContent = data.length;
+  }
 };
+
+// Initialisation au chargement de la page
+getProduits();
+getCommandes();
 nombreSurPanier();
