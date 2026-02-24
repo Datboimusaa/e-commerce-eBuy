@@ -9,6 +9,7 @@ const getProduits = async () => {
     const response = await fetch(API_URL);
     const produits = await response.json();
     produitsDisponibles = produits.reverse();
+    console.log('les produits : ', produitsDisponibles);
 
     const lesProduits = document.getElementById('lesProduits');
     let pros = '';
@@ -161,10 +162,24 @@ const nombreSurPanier = () => {
   const data = fetchLocal('commandes');
   const totalPan = document.getElementById('totalPan');
   if (totalPan) {
-    totalPan.textContent = data.length;
+    totalPan.textContent = data.length || 0;
   }
 };
 
 getProduits();
 getCommandes();
 nombreSurPanier();
+
+const userIcon = document.getElementById('userIcon');
+console.log(userIcon);
+if (userIcon) {
+  userIcon.addEventListener('click', (e) => {
+    e.preventDefault();
+    const session = localStorage.getItem('vendeurConnecte');
+    if (session) {
+      window.open('./admin.html', '_blank');
+    } else {
+      window.location.href = './profil.html';
+    }
+  });
+}
