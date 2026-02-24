@@ -1,15 +1,8 @@
 const API_URL = 'https://699cc75983e60a406a446756.mockapi.io/produits';
 
+import { ajouterAuPanier, fetchLocal, saveLocal } from './cartLogique.js';
+
 let produitsDisponibles = [];
-
-const fetchLocal = (key) => {
-  const data = localStorage.getItem(key);
-  return data ? JSON.parse(data) : [];
-};
-
-const saveLocal = (key, data) => {
-  localStorage.setItem(key, JSON.stringify(data));
-};
 
 const getProduits = async () => {
   try {
@@ -55,13 +48,14 @@ const getProduits = async () => {
       lesProduits.innerHTML = pros;
     }
 
-    const clickPro = document.querySelectorAll('.btnPro');
-    clickPro.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+    const boutons = document.querySelectorAll('.btnPro');
+    boutons.forEach((btn) => {
+      btn.addEventListener('click', () => {
         const id = btn.getAttribute('idPro');
-        ajouterAuPanier(id);
+        const produitChoisi = produitsDisponibles.find((p) => p.id === id);
+        ajouterAuPanier(produitChoisi);
+        getCommandes();
+        nombreSurPanier();
       });
     });
   } catch (error) {
@@ -69,40 +63,6 @@ const getProduits = async () => {
   }
 };
 
-const ajouterAuPanier = (id) => {
-  try {
-    let commandes = fetchLocal('commandes');
-
-    const existe = commandes.some((p) => p.produitId === id);
-    if (existe) {
-      alert('Ce produit est déjà dans le panier');
-      return;
-    }
-
-    const produit = produitsDisponibles.find((p) => p.id === id);
-
-    if (!produit) return;
-
-    const commande = {
-      id: crypto.randomUUID(),
-      produitId: produit.id,
-      nom: produit.nomProduit,
-      prix: produit.prix,
-      image: produit.urlImage,
-      quantite: 1,
-    };
-
-    commandes.push(commande);
-    saveLocal('commandes', commandes);
-    nombreSurPanier();
-    getCommandes();
-    alert('Produit ajouté au panier');
-  } catch (error) {
-    console.error('Erreur pour ajout dans le panier', error);
-  }
-};
-
-// --- 3. AFFICHER LE PANIER ---
 const getCommandes = () => {
   try {
     const data = fetchLocal('commandes').reverse();
@@ -197,7 +157,6 @@ const activerPanier = () => {
   });
 };
 
-// --- 5. METTRE À JOUR LE BADGE DU PANIER ---
 const nombreSurPanier = () => {
   const data = fetchLocal('commandes');
   const totalPan = document.getElementById('totalPan');
@@ -206,7 +165,6 @@ const nombreSurPanier = () => {
   }
 };
 
-// Initialisation au chargement de la page
 getProduits();
 getCommandes();
 nombreSurPanier();
