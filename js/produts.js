@@ -88,9 +88,9 @@ const getCommandes = () => {
       content += `
        <div class="flex items-center justify-between bg-white border border-slate-100 rounded-2xl p-3 shadow-sm mb-2">
             <div class="flex items-center gap-4">
-              <img src="${produit.image}" class="w-20 h-20 rounded-2xl object-cover" alt="Produit" />
+              <img src="${produit.urlImage || produit.image}" class="w-20 h-20 rounded-2xl object-cover" alt="Produit" />
               <div>
-                <h3 class="font-bold text-lg text-slate-800">${produit.nom}</h3>
+                <h3 class="font-bold text-lg text-slate-800">${produit.nomProduit || produit.nom}</h3>
                 <p class="text-slate-400 font-medium">${produit.prix} FCFA</p>
               </div>
             </div>
@@ -170,8 +170,8 @@ getProduits();
 getCommandes();
 nombreSurPanier();
 
+// code pour la session de l'user
 const userIcon = document.getElementById('userIcon');
-console.log(userIcon);
 if (userIcon) {
   userIcon.addEventListener('click', (e) => {
     e.preventDefault();
@@ -179,7 +179,82 @@ if (userIcon) {
     if (session) {
       window.open('./admin.html', '_blank');
     } else {
-      window.location.href = './profil.html';
+      window.location.href = './profile.html';
+    }
+  });
+}
+
+// code pour le commande :
+const btnModalCommande = document.getElementById('btnModalCommande');
+if (btnModalCommande) {
+  btnModalCommande.addEventListener('click', () => {
+    const commandes = fetchLocal('commandes');
+
+    if (commandes.length === 0) {
+      alert('Votre panier est vide !');
+      return;
+    }
+    const total = document.getElementById('totalPanier').textContent;
+    document.getElementById('modalTotalPrix').textContent = total + ' FCFA';
+
+    document.getElementById('modalCommande').showModal();
+  });
+}
+
+const API_COMMANDES = 'https://699dcb9c83e60a406a477403.mockapi.io/Commandes';
+
+const formCommande = document.getElementById('formCommande');
+
+if (formCommande) {
+  formCommande.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nom = document.getElementById('clientNom').value;
+    const telephone = document.getElementById('clientTelephone').value;
+    const adresse = document.getElementById('clientAdresse').value;
+
+    const panier = JSON.parse(localStorage.getItem('commandes') || '[]');
+
+    if (panier.length === 0) {
+      alert('Votre panier est vide !');
+      return;
+    }
+
+    try {
+      const commandeGlobale = {
+        clientNom: nom,
+        clientTelephone: telephone,
+        clientAdresse: adresse,
+        dateAchat: new Date().toLocaleDateString('fr-FR'),
+        statut: 'En attente',
+        articles: panier.map((produit) => ({
+          produitId: produit.id,
+          nom: produit.nomProduit,
+          prix: produit.prix,
+          quantite: produit.quantite || 1,
+          image: produit.urlImage,
+          vendeurId: produit.vendeurId,
+        })),
+      };
+
+      await fetch(API_COMMANDES, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(commandeGlobale),
+      });
+
+      alert('🎉 Commande validée avec succès !');
+
+      localStorage.removeItem('commandes');
+      document.getElementById('modalCommande').close();
+      window.location.reload();
+    } catch (error) {
+      console.error('Erreur lors de la commande :', error);
+      alert('Une erreur de connexion est survenue.');
+
+      const btnSubmit = formCommande.querySelector('button[type="submit"]');
+      btnSubmit.innerHTML = textOriginal;
+      btnSubmit.disabled = false;
     }
   });
 }

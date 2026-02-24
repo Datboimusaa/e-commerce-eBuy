@@ -75,14 +75,14 @@
               </div>
               <h3 id="nombreStock" class="text-3xl font-bold text-gray-800"></h3>
             </div>
-            <p class="text-gray-500 text-sm mb-1">Stock</p>
+            <p class="text-gray-500 text-sm mb-1">Total Stock</p>
           </div>
           <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
             <div class="flex justify-between items-start mb-4">
               <div class="bg-red-100 text-red-600 p-3 rounded-lg">
                 <i class="fa-solid fa-cart-shopping"></i>
               </div>
-              <h3 class="text-3xl font-bold text-gray-800">89</h3>
+              <h3 id="nbCommandes" class="text-3xl font-bold text-gray-800">89</h3>
             </div>
             <p class="text-gray-500 text-sm mb-1">Commandes Validées</p>
           </div>
@@ -91,7 +91,7 @@
               <div class="bg-purple-100 text-purple-600 p-3 rounded-lg">
                 <i class="fas fa-folder fa-lg"></i>
               </div>
-              <h3 class="text-3xl font-bold text-gray-800">48</h3>
+              <h3 id="revenuTotal" class="text-3xl font-bold text-gray-800">48</h3>
             </div>
             <p class="text-gray-500 text-sm mb-1">Revenu Total</p>
           </div>
@@ -305,7 +305,104 @@
           </div>
         </div>
       </div>
+      <div id="page03" class="hidden px-8 pt-4 pb-3 space-y-8">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-800">📦 Mes Commandes</h2>
+          <p class="text-gray-500 mt-2">Gérez les achats de vos clients et préparez les livraisons.</p>
+        </div>
+
+        <div id="conteneurCommandes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+
+      <div>
+        <dialog id="modalModification" class="modal">
+          <div class="modal-box bg-white rounded-2xl max-w-2xl">
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-4 top-4 text-gray-500 hover:bg-gray-100">✕</button>
+            </form>
+
+            <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3 border-gray-100">
+              <i class="fa-solid fa-pen-fancy text-[#8E5F44] mr-2"></i> Modifier le produit
+            </h3>
+
+            <form id="formEditProduit" class="space-y-4">
+              <input type="hidden" id="editId" />
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Nom du produit</label>
+                <input
+                  type="text"
+                  id="editNom"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">URL de l'image</label>
+                <input
+                  type="url"
+                  id="editImage"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                  required
+                />
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-600 mb-1">Prix (FCFA)</label>
+                  <input
+                    type="number"
+                    id="editPrix"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                    required
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-600 mb-1">Stock</label>
+                  <input
+                    type="number"
+                    id="editStock"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Catégorie</label>
+                <input
+                  type="text"
+                  id="editCategorie"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Description</label>
+                <textarea
+                  id="editDescription"
+                  rows="3"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-gray-100">
+                <form method="dialog">
+                  <button class="px-6 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition">Annuler</button>
+                </form>
+                <button type="submit" class="px-6 py-2.5 rounded-xl bg-[#8E5F44] text-white font-medium hover:bg-amber-700 transition shadow-md">
+                  Enregistrer les modifications
+                </button>
+              </div>
+            </form>
+          </div>
+        </dialog>
+      </div>
     </main>
+
     <script src="./js/admin.js"></script>
   </body>
 </html>
