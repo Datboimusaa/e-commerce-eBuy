@@ -7,70 +7,302 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <title>Document</title>
   </head>
-  <body class="bg-gray-50">
-    <div class="max-w-6xl rounded-2xl min-h-screen mx-auto w-full flex shadow-lg border border-gray-200 bg-white text-black">
-      <div class="w-60 p-4 border-r border-gray-200 flex flex-col gap-7 items-center">
-        <div>
-          <h2 class="font-bold mb-4 mt-4 text-3xl">Ebuy Admin</h2>
-          <hr />
+  <body class="bg-gray-100 flex h-screen text-gray-800 font-sans overflow-hidden">
+    <aside class="w-64 bg-white flex flex-col shadow-lg">
+      <div class="h-16 flex items-center px-6">
+        <div class="bg-[#8E5F44] text-white p-2 rounded-lg mr-3">
+          <i class="fas fa-box-open"></i>
         </div>
-        <div class="flex flex-col items-center gap-3">
-          <ul class="flex flex-col items-center">
-            <li class="p-2 rounded text-xl">
-              <button id="btnProduits" class="btn btn-dash btn-success w-40">Produits</button>
-            </li>
-            <li class="p-2 rounded text-xl">
-              <button id="btnCommandes" class="btn btn-dash btn-success w-40">Commandes</button>
-            </li>
-            <li class="p-2 rounded text-xl">
-              <a href="/product.html" target="_blank">
-                <button id="btnCommandes" class="btn btn-dash btn-success w-40">Voir les produits</button>
-              </a>
-            </li>
-          </ul>
-        </div>
+        <span class="text-2xl font-bold text-gray-900">Dashboard</span>
       </div>
-      <div id="contProduits" class="flex-1 p-8 flex flex-col bg-admin-bg">
-        <h1 class="text-3xl font-bold mb-6">Gestion projet</h1>
-        <div class="w-full mx-auto max-w-4xl p-3 rounded-md border-t items-center flex flex-col gap-3 border-gray-100 shadow-md bg-white mt-4">
-          <h1>Ajouter un nouveau produit</h1>
-          <form id="formProduit" class="flex flex-col items-center">
-            <div class="flex gap-4 mt-3">
-              <input type="text" id="nom" placeholder="nom du produit" class="input input-bordered w-70" />
-              <input type="url" id="imgLink" placeholder="Copiez l'adresse de l'image ici..." required class="input input-bordered w-full" />
-            </div>
-            <div class="flex gap-4 mt-4">
-              <input type="number" id="prix" class="input input-bordered w-40" required placeholder="Prix (FCFA)" />
-              <input type="number" id="stock" class="input input-bordered w-50" required placeholder="nombre de Stock" />
-              <input type="text" id="categorie" placeholder="nom du catégorie" required class="input input-bordered w-50" />
-            </div>
-            <div class="mt-4">
-              <textarea id="description" class="textarea textarea-bordered w-130 h-30" required placeholder="description du produit"></textarea>
-            </div>
-            <button class="btn btn-success mt-4 w-full max-w-xs" type="submit">Ajouter le produit</button>
-          </form>
+
+      <nav id="sidebar-menu" class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+        <a
+          href="#"
+          id="btn01"
+          class="nav-item flex hover:bg-[#8E5F44] hover:text-white transition-all duration-240 items-center px-4 py-3 text-gray-600 rounded-lg"
+        >
+          <i class="fas fa-th-large mr-3"></i> Tableau de bord
+        </a>
+        <a href="#" id="btn02" class="nav-item flex hover:bg-[#8E5F44] hover:text-white items-center px-4 py-3 text-gray-600 rounded-lg transition-colors">
+          <i class="fas fa-shopping-cart mr-3"></i> Commandes
+        </a>
+        <a href="#" id="btn03" class="nav-item flex hover:bg-[#8E5F44] hover:text-white items-center px-4 py-3 text-gray-600 rounded-lg transition-colors">
+          <i class="fas fa-truck mr-3"></i> Fournisseurs
+        </a>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto">
+      <header class="h-16 bg-white flex items-center justify-between px-8 shadow-sm relative p-10">
+        <div class="flex items-center">
+          <button class="text-gray-500 mr-4 focus:outline-none lg:hidden">
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
-        <div class="w-full mx-auto max-w-4xl p-3 rounded-md border-t border-gray-100 shadow-md bg-white mt-4">
-          <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Prix</th>
-                  <th>Stock</th>
-                  <th>Nom du produit</th>
-                  <th>catégorie</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="lesProduits"></tbody>
-            </table>
+        <div class="flex items-center space-x-6">
+          <div class="flex items-center space-x-3 cursor-pointer">
+            <i class="fa-solid fa-circle-user text-3xl text-[#8E5F44]"></i>
+            <div class="hidden md:block text-sm">
+              <p class="font-bold text-xl text-gray-800">babacar</p>
+              <p class="text-gray-500 text-xs">Vendeur</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div id="page01" class="p-8 space-y-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
+          <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex justify-between items-start mb-4">
+              <div class="bg-blue-100 text-blue-600 p-3 rounded-lg">
+                <i class="fas fa-box fa-lg"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800">2,847</h3>
+            </div>
+            <p class="text-gray-500 text-sm mb-1">Total Produits</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex justify-between items-start mb-4">
+              <div class="bg-green-100 text-green-600 p-3 rounded-lg">
+                <i class="fas fa-check-circle fa-lg"></i>
+              </div>
+              <h3 class="text-3xl font-bold text-gray-800">2,341</h3>
+            </div>
+            <p class="text-gray-500 text-sm mb-1">En Stock</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex justify-between items-start mb-4">
+              <div class="bg-red-100 text-red-600 p-3 rounded-lg">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </div>
+              <h3 class="text-3xl font-bold text-gray-800">89</h3>
+            </div>
+            <p class="text-gray-500 text-sm mb-1">Commandes Validées</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex justify-between items-start mb-4">
+              <div class="bg-purple-100 text-purple-600 p-3 rounded-lg">
+                <i class="fas fa-folder fa-lg"></i>
+              </div>
+              <h3 class="text-3xl font-bold text-gray-800">48</h3>
+            </div>
+            <p class="text-gray-500 text-sm mb-1">Revenu Total</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100 bg-white">
+              <h2 class="text-lg font-bold text-[#8E5F44]">Produits Récents</h2>
+            </div>
+            <div class="overflow-x-auto overflow-y-auto max-h-125">
+              <table class="w-full text-left border-collapse relative">
+                <thead class="sticky top-0 z-10 bg-gray-50 shadow-sm">
+                  <tr class="text-gray-500 text-xs uppercase border-b border-gray-100">
+                    <th class="p-4 font-semibold tracking-wider">Produit</th>
+                    <th class="p-4 font-semibold tracking-wider">Prix</th>
+                    <th class="p-4 font-semibold tracking-wider">Stock</th>
+                    <th class="p-4 font-semibold tracking-wider text-center">Catégorie</th>
+                    <th class="p-4 font-semibold tracking-wider text-right">Action</th>
+                  </tr>
+                </thead>
+
+                <tbody id="lesProduits" class="text-sm divide-y divide-gray-100 bg-white"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="lg:col-span-1 bg-white p-4 rounded-xl shadow-sm h-fit sticky top-8">
+            <div class="flex items-center space-x-3 mb-6">
+              <h2 class="text-lg font-bold text-[#8E5F44]">Ajouter Produit</h2>
+            </div>
+
+            <form id="productForm" class="space-y-5">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nom du produit</label>
+                <input
+                  id="nomProduit"
+                  required
+                  type="text"
+                  placeholder="Ex: Ordinateur portable"
+                  class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Url image</label>
+                <input
+                  required
+                  id="urlImage"
+                  type="url"
+                  placeholder="Copiez l'adresse de l'image ici..."
+                  class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Catégorie</label>
+                <select
+                  required
+                  id="categorie"
+                  class="w-full border border-gray-200 rounded-lg p-3 text-sm text-gray-600 bg-white focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 20 20\'%3E%3Cpath stroke=\'%236b7280\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1.5\' d=\'M6 8l4 4 4-4\'/%3E%3C/svg%3E')] bg-size-[1.25em_1.25em] bg-no-repeat bg-position-[right_0.75rem_center] pr-10"
+                >
+                  <option value="">Sélectionner...</option>
+                  <option value="Électronique">Électronique</option>
+                  <option value="Mobilier">Mobilier</option>
+                  <option value="Audio">Audio</option>
+                </select>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Prix (FCFA)</label>
+                  <input
+                    required
+                    id="prix"
+                    type="number"
+                    placeholder="0.00"
+                    class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Stock</label>
+                  <input
+                    required
+                    id="stock"
+                    type="number"
+                    placeholder="0"
+                    class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
+                  />
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <textarea
+                  required
+                  id="description"
+                  placeholder="Description"
+                  rows="3"
+                  class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
+                ></textarea>
+              </div>
+              <button
+                id="btnEnregistrer"
+                type="submit"
+                class="w-full bg-[#8E5F44] text-white font-medium py-3 rounded-lg mt-4 hover:bg-amber-700 transition-colors shadow-sm hover:shadow"
+              >
+                Enregistrer le produit
+              </button>
+            </form>
           </div>
         </div>
       </div>
-      <div id="contCommandes" class="hidden bg-admin-bg flex-1">les Commandes</div>
-    </div>
-    <script src="/js/admin.js"></script>
+      <div id="page02" class="px-8 pt-4 pb-3 space-y-8 hidden">
+        <div class="flex items-center max-w-md w-full">
+          <div
+            class="flex w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm focus-within:border-[#8a5a44] focus-within:ring-1 focus-within:ring-[#8a5a44] transition-all"
+          >
+            <div class="flex items-center justify-center pl-4 text-gray-400">
+              <i class="fas fa-search"></i>
+            </div>
+
+            <input
+              type="text"
+              placeholder="Rechercher un produit, une catégorie..."
+              class="w-full border-none py-3 px-3 text-sm text-gray-700 focus:outline-none"
+            />
+
+            <button class="bg-[#8a5a44] hover:opacity-90 text-white px-5 py-2.5 text-sm font-medium transition-colors">Rechercher</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[75vh]">
+          <div class="lg:col-span-2 bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+              <h2 class="text-lg font-bold text-[#8E5F44]">Fournisseurs</h2>
+            </div>
+
+            <div class="overflow-x-auto overflow-y-auto max-h-100">
+              <table class="w-full text-left border-collapse relative">
+                <thead class="sticky top-0 z-10 bg-gray-50">
+                  <tr class="text-gray-500 text-xs uppercase border-b border-gray-100 shadow-sm">
+                    <th class="p-4 font-semibold tracking-wider">Fournisseurs</th>
+                    <th class="p-4 font-semibold tracking-wider">Email</th>
+                    <th class="p-4 font-semibold tracking-wider">Nombre de stock</th>
+                    <th class="p-4 font-semibold tracking-wider text-center">Statut</th>
+                    <th class="p-4 font-semibold tracking-wider text-right">Action</th>
+                  </tr>
+                </thead>
+
+                <tbody class="text-sm divide-y divide-gray-100">
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="p-4 flex items-center space-x-4">
+                      <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
+                        <i class="fa-solid fa-user"></i>
+                      </div>
+                      <div>
+                        <span class="font-medium text-gray-800 block">Babacar Mboup</span>
+                      </div>
+                    </td>
+                    <td class="p-4 text-gray-600">babamboup697@gmail.com</td>
+                    <td class="p-4 text-gray-600">300</td>
+                    <td class="font-bold text-green-700 text-center text-md">actif</td>
+                    <td class="p-4 text-gray-800 text-right">
+                      <div class="flex justify-end gap-5">
+                        <i class="fa-solid fa-pen-fancy text-xl cursor-pointer"></i>
+                        <i class="fa-solid fa-trash text-xl cursor-pointer"></i>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="lg:col-span-1 bg-white p-4 rounded-xl shadow-sm h-fit sticky top-8">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="bg-[#8E5F44] text-white p-3 rounded-lg">
+                <i class="fas fa-plus fa-lg"></i>
+              </div>
+              <h2 class="text-lg font-bold text-gray-800">Ajout Rapide</h2>
+            </div>
+
+            <form class="space-y-5">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nom du fournisseur</label>
+                <input
+                  type="text"
+                  placeholder="Ex: Ordinateur portable"
+                  class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input
+                  type="text"
+                  placeholder="Ex: PROD-001"
+                  class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de stock</label>
+                <input
+                  type="Number"
+                  placeholder="Ex: PROD-001"
+                  class="w-full border border-gray-200 rounded-lg p-3 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
+                />
+              </div>
+
+              <button
+                type="button"
+                class="w-full bg-[#8E5F44] text-white font-medium py-3 rounded-lg mt-4 hover:bg-amber-700 transition-colors shadow-sm hover:shadow"
+              >
+                Enregistrer le produit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="./js/admin.js"></script>
   </body>
 </html>
