@@ -9,13 +9,12 @@ const getProduits = async () => {
     const response = await fetch(API_URL);
     const produits = await response.json();
     produitsDisponibles = produits.reverse();
-    console.log('les produits : ', produitsDisponibles);
 
     const lesProduits = document.getElementById('lesProduits');
     let pros = '';
     produitsDisponibles.forEach((produit) => {
       pros += `
-        <div class="w-75 bg-white rounded-xl border border-gray-200 shadow-lg overflow-hidden p-2">
+        <div class="lg:w-75 bg-white  rounded-xl border border-gray-200 shadow-lg overflow-hidden p-2">
           <div class="relative bg-primary-purple rounded-2xl mb-4 p-4 flex justify-center items-center h-56">
             <i class="bi bi-heart text-2xl text-gray-400 absolute top-4 right-4 cursor-pointer"></i>
             <div class="w-full h-full flex items-center justify-center">
@@ -25,14 +24,14 @@ const getProduits = async () => {
 
           <div class="px-2">
             <div class="flex justify-between items-center mb-3">
-              <h1 class="text-xl font-medium text-text-color">${produit.nomProduit}</h1>
+              <h1 class="text-md lg:text-2xl md:text-xl font-medium text-text-color">${produit.nomProduit}</h1>
               <div class="flex items-center text-yellow-500">
                 <i class="bi bi-star-fill text-lg"></i>
                 <span class="ml-1 text-sm font-semibold text-text-color">4.7</span>
               </div>
             </div>
 
-            <p class="text-xl font-bold text-gray-500 mb-5">${produit.prix} FCFA</p>
+            <p class="text-md lg:text-xl md:text-xl font-bold text-gray-500 mb-5">${produit.prix} FCFA</p>
 
             <button idPro="${produit.id}"
               class="btnPro w-full cursor-pointer bg-[#8E5F44] text-white font-semibold py-3 px-3 rounded-xl flex items-center justify-center shadow-md hover:bg-amber-700 transition duration-150"

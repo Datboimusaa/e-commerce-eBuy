@@ -16,26 +16,42 @@ const getProduits = async () => {
 
     produitsAffiches.forEach((produit) => {
       pros += `
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td class="p-4 flex items-center space-x-4">
-            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 overflow-hidden">
-              <img src="${produit.urlImage}" class="w-full h-full object-cover" alt="">
+        <tr class="hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0">
+          <td class="p-4 flex items-center space-x-4 min-w-62.5">
+            <div class="w-12 h-12 bg-gray-100 rounded-lg shrink-0 flex items-center justify-center text-gray-500 overflow-hidden border border-gray-100">
+              <img src="${produit.urlImage || 'https://via.placeholder.com/50'}" 
+                  class="w-full h-full object-cover" 
+                  onerror="this.src='https://via.placeholder.com/50'"
+                  alt="">
             </div>
             <div>
-              <span class="font-medium text-gray-800 block">${produit.nomProduit}</span>
+              <span class="font-bold text-gray-800 block leading-tight">${produit.nomProduit}</span>
+              <span class="text-[10px] uppercase text-gray-400 font-bold lg:hidden">${produit.categorie}</span>
             </div>
           </td>
-          <td class="p-4 text-gray-600">${produit.prix} FCFA</td>
-          <td class="p-4 text-gray-600">${produit.stock}</td>
-          <td class="p-4 font-medium text-gray-800 text-center">${produit.categorie}</td>
-          <td class="p-4 text-gray-800 text-right">
-            <div class="flex justify-end gap-5">
-              <i idModify="${produit.id}" class="btnEdit fa-solid fa-pen-fancy text-xl cursor-pointer hover:text-[#8E5F44] transition-colors"></i>
-              <i idPro="${produit.id}" class="btnDelete fa-solid fa-trash text-xl cursor-pointer hover:text-red-500 transition-colors"></i>
+          
+          <td class="p-4 text-gray-600 font-medium whitespace-nowrap">${produit.prix} FCFA</td>
+          
+          <td class="p-4 text-center">
+            <span class="px-2 py-1 ${produit.stock > 5 ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'} rounded-md text-xs font-bold">
+              ${produit.stock} en stock
+            </span>
+          </td>
+
+          <td class="p-4 font-medium text-gray-500 text-center hidden md:table-cell">${produit.categorie}</td>
+          
+          <td class="p-4 text-right">
+            <div class="flex justify-end gap-4">
+              <button idModify="${produit.id}" class="btnEdit p-2 hover:bg-[#8E5F44]/10 rounded-full transition-all">
+                <i class="fa-solid fa-pen-fancy text-lg text-gray-700 hover:text-[#8E5F44]"></i>
+              </button>
+              <button idPro="${produit.id}" class="btnDelete p-2 hover:bg-red-50 rounded-full transition-all">
+                <i class="fa-solid fa-trash text-lg text-gray-700 hover:text-red-500"></i>
+              </button>
             </div>
           </td>
         </tr>
-      `;
+        `;
     });
 
     if (lesProduits) {
@@ -334,7 +350,7 @@ const getCommandes = async () => {
             </div>
           </div>
 
-          <div class="p-5 flex-grow">
+          <div class="p-5 grow">
             <h4 class="text-[10px] font-black text-slate-400 uppercase mb-3 tracking-widest">Articles à préparer</h4>
             
             <div class="max-h-64 overflow-y-auto pr-2 custom-scrollbar">
@@ -371,3 +387,18 @@ const getCommandes = async () => {
 };
 
 getCommandes();
+
+// code pour le menu drawer :
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebar-overlay');
+const openBtn = document.getElementById('open-sidebar');
+const closeBtn = document.getElementById('close-sidebar');
+
+const toggleSidebar = () => {
+  sidebar.classList.toggle('-translate-x-full');
+  overlay.classList.toggle('hidden');
+};
+
+if (openBtn) openBtn.onclick = toggleSidebar;
+if (closeBtn) closeBtn.onclick = toggleSidebar;
+if (overlay) overlay.onclick = toggleSidebar;
