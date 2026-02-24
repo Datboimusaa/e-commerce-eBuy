@@ -19,21 +19,24 @@
         <span class="text-2xl font-bold text-gray-900">Dashboard</span>
       </div>
 
-      <nav id="sidebar-menu" class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-        <a
-          href="#"
-          id="btn01"
-          class="nav-item flex hover:bg-[#8E5F44] hover:text-white transition-all duration-240 items-center px-4 py-3 text-gray-600 rounded-lg"
-        >
-          <i class="fas fa-th-large mr-3"></i> Tableau de bord
-        </a>
-        <a href="#" id="btn02" class="nav-item flex hover:bg-[#8E5F44] hover:text-white items-center px-4 py-3 text-gray-600 rounded-lg transition-colors">
-          <i class="fas fa-shopping-cart mr-3"></i> Commandes
-        </a>
-        <a href="#" id="btn03" class="nav-item flex hover:bg-[#8E5F44] hover:text-white items-center px-4 py-3 text-gray-600 rounded-lg transition-colors">
-          <i class="fas fa-truck mr-3"></i> Fournisseurs
-        </a>
-      </nav>
+      <div class="h-screen flex flex-col">
+        <nav id="sidebar-menu" class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+          <a
+            href="#"
+            id="btn01"
+            class="nav-item flex hover:bg-[#8E5F44] hover:text-white transition-all duration-240 items-center px-4 py-3 text-gray-600 rounded-lg"
+          >
+            <i class="fas fa-th-large mr-3"></i> Tableau de bord
+          </a>
+          <a href="#" id="btn02" class="nav-item flex hover:bg-[#8E5F44] hover:text-white items-center px-4 py-3 text-gray-600 rounded-lg transition-colors">
+            <i class="fas fa-shopping-cart mr-3"></i> Commandes
+          </a>
+          <a href="#" id="btn03" class="nav-item flex hover:bg-[#8E5F44] hover:text-white items-center px-4 py-3 text-gray-600 rounded-lg transition-colors">
+            <i class="fas fa-truck mr-3"></i> Fournisseurs
+          </a>
+        </nav>
+        <button id="btnLogout" class="btn btn-dash btn-error w-40 my-4 ml-4">Déconnexion</button>
+      </div>
     </aside>
 
     <main class="flex-1 flex flex-col h-screen overflow-y-auto">
@@ -47,7 +50,7 @@
           <div class="flex items-center space-x-3 cursor-pointer">
             <i class="fa-solid fa-circle-user text-3xl text-[#8E5F44]"></i>
             <div class="hidden md:block text-sm">
-              <p class="font-bold text-xl text-gray-800">babacar</p>
+              <p id="nomBoutique" class="font-bold text-xl text-gray-800"></p>
               <p class="text-gray-500 text-xs">Vendeur</p>
             </div>
           </div>
@@ -61,7 +64,7 @@
               <div class="bg-blue-100 text-blue-600 p-3 rounded-lg">
                 <i class="fas fa-box fa-lg"></i>
               </div>
-              <h3 class="text-2xl font-bold text-gray-800">2,847</h3>
+              <h3 id="totalAnnonce" class="text-2xl font-bold text-gray-800"></h3>
             </div>
             <p class="text-gray-500 text-sm mb-1">Total Produits</p>
           </div>
@@ -70,9 +73,9 @@
               <div class="bg-green-100 text-green-600 p-3 rounded-lg">
                 <i class="fas fa-check-circle fa-lg"></i>
               </div>
-              <h3 class="text-3xl font-bold text-gray-800">2,341</h3>
+              <h3 id="nombreStock" class="text-3xl font-bold text-gray-800"></h3>
             </div>
-            <p class="text-gray-500 text-sm mb-1">En Stock</p>
+            <p class="text-gray-500 text-sm mb-1">Stock</p>
           </div>
           <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
             <div class="flex justify-between items-start mb-4">

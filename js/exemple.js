@@ -74,3 +74,17 @@ const nombreSurPanier = () => {
 
 getProduits();
 nombreSurPanier();
+
+// code pour verifier si l'user a connecter ou pas :
+const userIcon = document.getElementById('userIcon'); // userIcon moy le nom de l'id du l'icone profil
+if (userIcon) {
+  userIcon.addEventListener('click', (e) => {
+    e.preventDefault();
+    const session = localStorage.getItem('vendeurConnecte');
+    if (session) {
+      window.open('./admin.html', '_blank');
+    } else {
+      window.location.href = 'profile.html';
+    }
+  });
+}
