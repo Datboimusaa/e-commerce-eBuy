@@ -1,5 +1,180 @@
 const API_URL = 'https://699cc75983e60a406a446756.mockapi.io/produits';
 
+const staticProducts = [
+
+/* MODE HOMME */
+
+{
+id: "sh1",
+nomProduit: "T-shirt Noir Homme",
+prix: 8000,
+urlImage: "https://i.imgur.com/8Km9tLL.jpg",
+category: "mode-homme",
+subcategory: "tshirt",
+tags: ["ramadan"]
+},
+
+{
+id: "sh2",
+nomProduit: "T-shirt Blanc Homme",
+prix: 7500,
+urlImage: "https://i.imgur.com/9XqQZ3D.jpg",
+category: "mode-homme",
+subcategory: "tshirt",
+tags: ["valentin"]
+},
+
+{
+id: "jh1",
+nomProduit: "Jean Slim Homme",
+prix: 15000,
+urlImage: "https://i.imgur.com/FYb9QkR.jpg",
+category: "mode-homme",
+subcategory: "jeans",
+tags: []
+},
+
+{
+id: "jh2",
+nomProduit: "Jean Bleu Homme",
+prix: 16000,
+urlImage: "https://i.imgur.com/xDBo7nM.jpg",
+category: "mode-homme",
+subcategory: "jeans",
+tags: ["ramadan"]
+},
+
+
+/* MODE FEMME */
+
+{
+id: "sf1",
+nomProduit: "Robe Fleurie",
+prix: 18000,
+urlImage: "https://i.imgur.com/ZANVnHE.jpg",
+category: "mode-femme",
+subcategory: "robes",
+tags: ["valentin"]
+},
+
+{
+id: "sf2",
+nomProduit: "Robe Rouge",
+prix: 20000,
+urlImage: "https://i.imgur.com/v6KQF4p.jpg",
+category: "mode-femme",
+subcategory: "robes",
+tags: []
+},
+
+{
+id: "tsf1",
+nomProduit: "T-shirt Femme Rose",
+prix: 7000,
+urlImage: "https://i.imgur.com/MY6Z9Yd.jpg",
+category: "mode-femme",
+subcategory: "tshirt",
+tags: ["valentin"]
+},
+
+{
+id: "tsf2",
+nomProduit: "T-shirt Femme Blanc",
+prix: 6500,
+urlImage: "https://i.imgur.com/TaF7JkM.jpg",
+category: "mode-femme",
+subcategory: "tshirt",
+tags: []
+},
+
+
+/* ELECTRONIQUES */
+
+{
+id: "e1",
+nomProduit: "Casque Bluetooth",
+prix: 25000,
+urlImage: "https://i.imgur.com/3tVgsra.jpg",
+category: "electroniques",
+subcategory: "audio",
+tags: []
+},
+
+{
+id: "e2",
+nomProduit: "Ecouteurs Sans Fil",
+prix: 15000,
+urlImage: "https://i.imgur.com/Ig9o4kU.jpg",
+category: "electroniques",
+subcategory: "audio",
+tags: ["ramadan"]
+},
+
+{
+id: "e3",
+nomProduit: "Smartphone Android",
+prix: 120000,
+urlImage: "https://i.imgur.com/Ba8Yz6D.jpg",
+category: "electroniques",
+subcategory: "phones",
+tags: []
+},
+
+{
+id: "e4",
+nomProduit: "Montre Connectée",
+prix: 30000,
+urlImage: "https://i.imgur.com/6dXGQF7.jpg",
+category: "electroniques",
+subcategory: "wearables",
+tags: ["valentin"]
+},
+
+
+/* MAISON CUISINE */
+
+{
+id: "m1",
+nomProduit: "Blender",
+prix: 22000,
+urlImage: "https://i.imgur.com/Y6XQK6p.jpg",
+category: "maison-cuisine",
+subcategory: "appliances",
+tags: ["ramadan"]
+},
+
+{
+id: "m2",
+nomProduit: "Mixeur",
+prix: 20000,
+urlImage: "https://i.imgur.com/jEXFQ7W.jpg",
+category: "maison-cuisine",
+subcategory: "appliances",
+tags: []
+},
+
+{
+id: "m3",
+nomProduit: "Set Assiettes",
+prix: 15000,
+urlImage: "https://i.imgur.com/6YV9Z6U.jpg",
+category: "maison-cuisine",
+subcategory: "vaisselle",
+tags: []
+},
+
+{
+id: "m4",
+nomProduit: "Poêle Cuisine",
+prix: 12000,
+urlImage: "https://i.imgur.com/3XQ9Z6J.jpg",
+category: "maison-cuisine",
+subcategory: "ustensiles",
+tags: ["ramadan"]
+}
+
+];
+
 import { ajouterAuPanier, fetchLocal, saveLocal } from './cartLogique.js';
 
 let produitsDisponibles = [];
@@ -8,7 +183,8 @@ const getProduits = async () => {
   try {
     const response = await fetch(API_URL);
     const produits = await response.json();
-    produitsDisponibles = produits.reverse();
+    const APIProducts = produits.reverse();
+    produitsDisponibles = [...staticProducts, ...APIProducts];
 
     const lesProduits = document.getElementById('lesProduits');
     let pros = '';
@@ -24,7 +200,7 @@ const getProduits = async () => {
 
           <div class="px-2">
             <div class="flex justify-between items-center mb-3">
-              <h1 class="text-md lg:text-2xl md:text-xl font-medium text-text-color">${produit.nomProduit}</h1>
+              <h1 class="text-md lg:text-2xl md:text-xl font-medium truncate text-text-color">${produit.nomProduit}</h1>
               <div class="flex items-center text-yellow-500">
                 <i class="bi bi-star-fill text-lg"></i>
                 <span class="ml-1 text-sm font-semibold text-text-color">4.7</span>

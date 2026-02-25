@@ -33,13 +33,13 @@
                     </div>
                 </div>
 
-                <a href="#">
+                <a href="index.html">
                     <img src="assets/images/logo.png" alt="Logo" class="h-[60px]">
                 </a>
             </div>
 
             <div class="relative  items-center transition hidden  md:flex">
-                <input type="text" placeholder="Search" class="bg-gray-200 md:w-md rounded-full pl-[35px] pr-[45px] py-2
+                <input type="text" placeholder="Search" id="search-input" class="bg-gray-200 md:w-md rounded-full pl-[35px] pr-[45px] py-2
            focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition duration-200" />
 
                 <span class="absolute left-[10px] hover:text-primary transition">
@@ -60,16 +60,15 @@
             </div>
             <div class="flex gap-3 items-center">
                 <a href="#" class="md:hidden hover:text-primary"><i class="bi bi-search"></i></a>
-                <a href="#" class="relative hover:text-primary"><i class="bi bi-cart"></i><span
-                        class="text-[10px] absolute top-[-4px] right-[-6px] bg-primary text-white rounded-[50%] px-1">0</span></a>
-                <a href="#" class="relative hover:text-primary"><i class="bi bi-heart"></i><span
-                        class="text-[10px] absolute top-[-4px] right-[-6px] bg-primary text-white rounded-[50%] px-1">0</span></a>
+                <a href="panier.html" class="relative hover:text-primary"><i class="bi bi-cart" ></i><span
+                        class="text-[10px] absolute top-[-4px] right-[-6px] bg-primary text-white rounded-[50%] px-1" id="totalPan">0</span></a>
+                <a href="wishlist.html" class="relative hover:text-primary"><i class="bi bi-heart"></i></a>
                 <div class="dropdown relative hidden md:flex items-center">
                     <button class="cursor-pointer hover:text-primary dropdown-btn"><i
                             class="bi bi-person text-xl"></i></button>
                     <div class="flex flex-col bg-white shadow-md border-gray-300 absolute w-[150px] bottom-[-120px] left-[-62px] p-2 gap-2 dropdown-content
                     border rounded hidden">
-                        <a href="#" class="w-full hover:text-primary">Mon compte</a>
+                        <a href="#" class="w-full hover:text-primary" id="accountBtn">Mon compte</a>
                         <a href="#" class="w-full hover:text-primary">Mes commandes</a>
                         <a href="#" class="w-full hover:text-primary">Mes préférences</a>
                     </div>
@@ -86,7 +85,7 @@
                 <div
                     class="dropdown-content absolute w-screen grid grid-cols-4 justify-around items-center border border-gray-300 bg-white shadow-md z-25 top-[40px] left-0 p-4 hidden">
                     <div class="text-center">
-                        <a href="#" class="text-sm font-semibold text-heading uppercase">Mode Homme</a>
+                        <a href="product.html?category=mode-homme" class="text-sm font-semibold text-heading uppercase">Mode Homme</a>
                         <ul class="flex flex-col gap-4  items-center">
                             <li>
                                 <a href="#" class="hover:text-primary">T-shirts</a>
@@ -106,7 +105,7 @@
                         </ul>
                     </div>
                     <div class="text-center">
-                        <a href="#" class="text-sm font-semibold text-heading uppercase">Mode Femme</a>
+                        <a href="product.html?category=mode-femme" class="text-sm font-semibold text-heading uppercase">Mode Femme</a>
                         <ul class="flex flex-col gap-4 items-center">
                             <li>
                                 <a href="#" class="hover:text-primary">Robes</a>
@@ -126,7 +125,7 @@
                         </ul>
                     </div>
                     <div class="text-center">
-                        <a href="#" class="text-sm font-semibold text-heading uppercase">Electroniques</a>
+                        <a href="product.html?category=electroniques" class="text-sm font-semibold text-heading uppercase">Electroniques</a>
                         <ul class="flex flex-col gap-4 items-center">
                             <li>
                                 <a href="#" class="hover:text-primary">Smartphones</a>
@@ -146,7 +145,7 @@
                         </ul>
                     </div>
                     <div class="text-center">
-                        <a href="#" class="text-sm font-semibold text-heading uppercase">Maison & Cuisine</a>
+                        <a href="product.html?category=maison-cuisine" class="text-sm font-semibold text-heading uppercase">Maison & Cuisine</a>
                         <ul class="flex flex-col gap-4 items-center">
                             <li>
                                 <a href="#" class="hover:text-primary">Meubles</a>
@@ -169,12 +168,12 @@
             </div>
             <div class="w-[70%]">
                 <ul class="flex gap-6 pl-5">
-                    <li><a href="#" class="hover:text-primary">Homme</a></li>
-                    <li><a href="#" class="hover:text-primary">Femme</a></li>
-                    <li><a href="#" class="hover:text-primary">Electroménager</a></li>
+                    <li><a href="product.html?category=mode-homme" class="hover:text-primary">Homme</a></li>
+                    <li><a href="product.html?category=mode-femme" class="hover:text-primary">Femme</a></li>
+                    <li><a href="product.html?category=electromenager" class="hover:text-primary">Electroménager</a></li>
                     <li><a href="#" class="hover:text-primary">Soldes</a></li>
-                    <li><a href="#" class="hover:text-primary">Offres Ramadan</a></li>
-                    <li><a href="#" class="hover:text-primary">Offres saint Valentin</a></li>
+                    <li><a href="product.html?tag=ramadan" class="hover:text-primary">Offres Ramadan</a></li>
+                    <li><a href="product.html?tag=valentin" class="hover:text-primary">Offres saint Valentin</a></li>
                     <li><a href="#" class="hover:text-primary">Best sellers</a></li>
                     <li><a href="#" class="hover:text-primary">Nouveautés</a></li>
                 </ul>
@@ -326,9 +325,15 @@
 
         <section id="Nouveautés">
             <div class="max-w-7xl mx-auto px-4 py-10">
-                <h2 class="text-2xl font-bold mb-6 border-l-6 border-primary pl-4">
-                    Produits Recommandés
-                </h2>
+                <div class="flex justify-between">
+                    <h2 class="text-2xl font-bold mb-6 border-l-6 border-primary pl-4">
+                        Produits recommandés
+                    </h2>
+                    <a href="#" class="text-primary hover:underline self-end">Voir tout</a>
+                </div>
+                <div id="homeProduits" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                </div>
             </div>
         </section>
     </main>
@@ -433,7 +438,9 @@
             </div>
         </div>
     </footer>
-    <script src="js/index.js"></script>
+    <script type="module" src="js/produts.js"></script>
+    <script type="module" src="js/cartLogique.js"></script>
+    <script type="module" src="js/index.js"></script>
 </body>
 
 </html>

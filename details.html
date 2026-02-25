@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
+
+    <link href="./css/output.css" rel="stylesheet" />
+    <title>details-produits</title>
+</head> 
+
+<body>
+    <p id="alert" class="p-3 bg-green-500 rounded-2xl shadow-2xl mx-150 z-50">Ajouté aux favoris</p>
+    <div class="classModal  justify-center items-center">
+
+        <div class="modal-card transition-all w-xl rounded-2xl bg-white z-40 px-5 relative">
+            <p class="modal-hidden mx-5 text-3xl cursor-pointer" onclick="closeModal()"><i class="bi bi-x"></i></p>
+            <h2>Veuiller Choisir votre option</h2>
+            <div class="flex justify-between items-center mb-5 mt-5">
+                <div class="text-xl">S: 7999 FCFA</div>
+                <div class="flex gap-5 items-center">
+                    <input type="number" class="w-20 border border-black rounded-lg outline-0 ps-6 inputArticle">
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-5">
+                <div class="text-xl">M: 7999 FCFA</div>
+                <div class="flex gap-5 items-center">
+                    <input type="number" class="w-20 border border-black rounded-lg outline-0 ps-6 inputArticle">
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-5">
+                <div class="text-xl">XL: 7999 FCFA</div>
+                <div class="flex gap-5 items-center">
+                    <input type="number" class="w-20 border border-black rounded-lg outline-0 ps-6 inputArticle">
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-5">
+                <div class="text-xl">XXL: 7999 FCFA</div>
+                <div class="flex gap-5 items-center">
+                    <input type="number" class="w-20 border border-black rounded-lg outline-0 ps-6 inputArticle">
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <button class="border rounded-lg px-4 py-1 hover:text-white hover:bg-black transition">Poursuivre vos
+                    achats</button>
+                <button class="border rounded-lg px-4 py-1 transition hover:text-white hover:bg-black ">Aller
+                    au panier</button>
+            </div>
+        </div>
+    </div> 
+    <div class="body flex justify-center p-5 gap-5 ms:flex-col">
+        <div class="carrousel shadow-sm hover:shadow-lg rounded-2xl  " id="carrous">
+            <img src="images/im5.webp" class="mainImg">
+        </div>
+
+        <div class="flex flex-col shadow-sm  p-5 rounded-xl border relative z-10">
+            <p>Ensemble T-shirt+pantalon en pur coton à manches courtes pour homme</p>
+
+            <div class=" flex justify-between font-bold text-3xl mt-4 relative">
+
+                <!--PRIX-->
+                <div class="inline-block">3 207 FCFA </div>
+
+                <!--FAVORIS-->
+                <div class="justify-center items-center cursor-pointer relative px-5">
+                    <div class="favoris" id="favoris">
+                        <i class="bi bi-heart"></i>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-5 border -z-40 border-gray-200">
+
+            <!--SIZE-->
+            <div class="flex">
+                <div class="font-bold ">Options disponibles</div>
+            </div>
+
+            <div class="grid grid-cols-3 mt-5 gap-4 z-10">
+                <div class="border rounded-2xl border-gray-200 px-5 py-1 hover:border-gray-900 cursor-pointer z-10 ">
+                    Taille S</div>
+                <div class="border rounded-2xl border-gray-200 px-3 py-1 hover:border-gray-900 cursor-pointer  ">taille
+                    M</div>
+                <div class="border rounded-2xl border-gray-200 px-3 py-1 hover:border-gray-900 cursor-pointer  ">
+                    Taille XL</div>
+                <div class="border rounded-2xl border-gray-200 px-3 py-1 hover:border-gray-900 cursor-pointer  ">
+                    Taille 2XL</div>
+                <div class="border rounded-2xl border-gray-200 px-3 py-1 hover:border-gray-900 cursor-pointer  ">
+                    Taille 3XL</div>
+
+            </div>
+
+            <div class="flex mt-5 gap-3">
+                <p>Qty:</p>
+                <div class="flex">
+                    <button class="border border-gray-300 px-2 cursor-pointer bg-gray-200">-</button>
+                    <input type="text" class="  border border-gray-300 " style="width: 50px;">
+                    <button class="border border-gray-300 px-2 cursor-pointer bg-gray-200">+</button>
+                </div>
+            </div>
+
+            <hr class="my-5 border border-gray-200">
+
+            <div class="flex ">
+                <button class=" px-5 py-3 uppercase  mt-5 bg-black text-white  cursor-pointer
+                            hover:bg-gray-800 text-center font-bold w-full rounded-xl taille">Acheter</button>
+                <!-- <div class="border rounded-full w-"><i class="bi bi-heart"></i></div> -->
+            </div>
+
+            <div class="grid grid-cols-4 mt-5">
+                <div class="img1 cursor-pointer  transition-all">
+                    <img src="assets/images/im5.webp" width="100" height="100"
+                        class="smallImg hover:border hover:border-b-amber-950 transition-all">
+                </div>
+                <div class="img2 cursor-pointer">
+                    <img src="assets/images/im1.webp" width="100" height="100"
+                        class="smallImg hover:border hover:border-b-amber-950 transition-all">
+                </div>
+                <div class="img3 cursor-pointer">
+                    <img src="assets/images/im2.webp" width="100" height="100"
+                        class="smallImg hover:border hover:border-b-amber-950 transition-all">
+                </div>
+                <div class="img4 cursor-pointer">
+                    <img src="assets/images/im3.webp" width="100" height="100"
+                        class="smallImg hover:border hover:border-b-amber-950 transition-all">
+                </div>
+            </div>
+            <div class="images-produits">
+
+            </div>
+        </div>
+    </div>
+    <!--DESCRIPTION-->
+    <div class="d-flex justify-center items-center w-full p-5">
+        <div class="p-5 rounded-lg shadow-sm">
+            <h1 class="m-5 font-bold text-2xl">Descriptions</h1>
+            <div class="p-5">
+                <p>Whether formally dressed or in casuals, style should never be compromised. Jumia provides you with
+                    fashion items and accessories that fit your everyday lifestyle, from the workplace to the bar, all
+                    proven durable and of superior quality.
+                    Material: 100% Cotton shirt
+                    Collar shape: round collar shirt
+                    Colour: Multicolour shirt
+                    Style: casual shirt
+                    Model: slim model shirt
+                    Quality Print shirt
+                    Perfect Finishing
+                    Attention Please: For transportation needs, the cloth that you've received will have a fold
+                    phenomenon. Please don't worry, this fold situation will disappear after the first time you clear or
+                    ironing.
+                    About color: Pictures are only samples for reference. Due to limitations in photography and the
+                    inevitable differences in monitor settings, the colors shown in the photograph may not correspond
+                    100% to those in the items themselves
+                    About size: All dimensions are measured by hand, there may be 2-3cm deviations. Please ignore the
+                    tag size comes with the cloth.
+                    Available in stock, super cheap items, carefully selected, new every day, super low discount.
+                    For more styles, please click
+                    Whether formally dressed or in casuals, style should never be compromised. Jumia provides you with
+                    fashion items and accessories that fit your everyday lifestyle, from the workplace to the bar, all
+                    proven durable and of superior quality.
+                    Material: 100% Cotton shirt
+                    Collar shape: round collar shirt
+                    Colour: Multicolour shirt
+                    Style: casual shirt
+                    Model: slim model shirt
+                    Quality Print shirt
+                    Perfect Finishing
+                    Attention Please: For transportation needs, the cloth that you've received will have a fold
+                    phenomenon. Please don't worry, this fold situation will disappear after the first time you clear or
+                    ironing.
+                    About color: Pictures are only samples for reference. Due to limitations in photography and the
+                    inevitable differences in monitor settings, the colors shown in the photograph may not correspond
+                    100% to those in the items themselves
+                    About size: All dimensions are measured by hand, there may be 2-3cm deviations. Please ignore the
+                    tag size comes with the cloth.
+                    Available in stock, super cheap items, carefully selected, new every day, super low discount.
+                    For more styles, please click</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!--CCOMMENTAIRES-->
+    <div class="w-full h-full flex justify-center items-center mt-24 p-5 ">
+        <div class="w-full shadow-sm p-5">
+            <h2 class="p-2 ">Commentaires Clients Vérifiés</h2>
+            <hr class="tirer w-full">
+            <div class="flex w-full gap-5 p-5">
+                <flex class="flex flex-col gap-2">
+                    <div class="w-70 h-70 bg-gray-200 rounded-2xl  flex flex-col justify-center items-center">
+                        <p class="total text-6xl text-green-400">3/5</p>
+                        <div class="flex gap-3 mt-2 stars">
+                            <div class="star"><i class="bi bi-star-fill" ></i></div>
+                            <div class="star"><i class="bi bi-star-fill" ></i></div>
+                            <div class="star"><i class="bi bi-star-fill" ></i></div>
+                            <div class="star"><i class="bi bi-star-fill" ></i></div>
+                            <div class="star"><i class="bi bi-star-fill" ></i></div>
+                            
+                        </div>
+                        <p class="text-gray-700 mt-5"><span class="verify">13</span> avis verifies</p>
+                    </div>
+                    <div class="flex flex-col gap-2 mt-2">
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-2">
+                                5 <i class="bi bi-star-fill"></i> (5)
+                            </div>
+                            <div class="w-50 h-2 rounded bg-gray-200"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-2">
+                                4 <i class="bi bi-star-fill"></i> (4)
+                            </div>
+                            <div class="w-50 h-2 rounded bg-gray-200"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-2">
+                                3 <i class="bi bi-star-fill"></i> (3)
+                            </div>
+                            <div class="w-50 h-2 rounded bg-gray-200"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-2">
+                                2 <i class="bi bi-star-fill"></i> (2)
+                            </div>
+                            <div class="w-50 h-2 rounded bg-gray-200"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-2">
+                                1 <i class="bi bi-star-fill"></i> <span class="totalStarOne"></span>
+                            </div>
+                            <div class="w-50 h-2 rounded bg-gray-200"></div>
+                        </div>
+                    </div>
+                </flex>
+                <div class="w-3xl">
+                    <div class="flex flex-col">
+                        <textarea id="area" class=" border border-gray-300 rounded w-xl p-2 hover:shadow-lg outline-0"
+                            placeholder="Commentaires"></textarea>
+                        <div>
+                            <button type="button" class="px-3 py-1 bg-black text-white rounded mt-2 cursor-pointer "
+                                id="area-button" onclick="createComment()">Envoyez</button>
+                        </div>
+                        <ul class="w-full h-90 border border-gray-300 rounded-2xl p-3  mt-5 overflow-scroll"
+                            id="commentText">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="w-full h-full flex justify-center mt-24 ">
+        <div class="w-7xl bg-white shadow-sm border border-gray-200 rounded-2xl p-5 relative">
+            <h2 class="text-3xl m-2">Produits Similaires</h2>
+
+            <div class="carousel-container ">
+                <div class="card-wrapper">
+                    <ul class="card-list flex gap-5">
+                        <li class="card-item  flex p-3 flex-col gap-1 rounded-xl ">
+                            <div class="haut "><img src="assets/images/im1.webp"></div>
+                            <div class="bas">
+                                <h5>6,500 FCFA</h5>
+                                <div class="flex gap-3 mt-2">
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: grey;"></i>
+                                    <i class="bi bi-star-fill" style="color: grey;"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card-item flex p-3 flex-col gap-1 rounded-xl ">
+                            <div class="haut"><img src="assets/images/img3.webp"></div>
+                            <div class="bas">
+                                <h5>6,500 FCFA</h5>
+                                <div class="flex gap-3 mt-2">
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: grey;"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card-item flex p-3 flex-col gap-1 rounded-xl ">
+                            <div class="haut"><img src="assets/images/img1.webp"></div>
+                            <div class="bas">
+                                <h5>6,500 FCFA</h5>
+                                <div class="flex gap-3 mt-2">
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: grey;"></i>
+                                    <i class="bi bi-star-fill" style="color: grey;"></i>
+                                    <i class="bi bi-star-fill" style="color: grey;"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card-item flex p-3 flex-col gap-1 rounded-xl ">
+                            <div class="haut"><img src="assets/images/im3.webp"></div>
+                            <div class="bas">
+                                <h5>6,500 FCFA</h5>
+                                <div class="flex gap-3 mt-2">
+                                    <i class="bi bi-star-fill"style="color: green;"></i>
+                                    <i class="bi bi-star-fill"style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: grey;"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card-item flex p-3 flex-col gap-1 rounded-xl swiper-slide">
+                            <div class="haut"><img src="assets/images/im5.webp"></div>
+                            <div class="bas">
+                                <h5>6,500 FCFA</h5>
+                                <div class="flex gap-3 mt-2">
+                                    <i class="bi bi-star-fill"style="color: green;"></i>
+                                    <i class="bi bi-star-fill"style="color: green;"></i>
+                                    <i class="bi bi-star-fill"style="color: green;"></i>
+                                    <i class="bi bi-star-fill"style="color: green;"></i>
+                                    <i class="bi bi-star-fill" style="color: grey;"></i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/details.js"></script>
+</body>
+
+</html>

@@ -7,5 +7,179 @@
     <link href="./css/output.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
   </head>
-  <body></body>
+  <body>
+    <header class="sticky top-0 bg-white z-50">
+      <nav class="flex md:justify-around justify-between items-center border-b border-gray-300 py-2 px-2">
+        <div class="flex items-center gap-2">
+          <div class="Offcanvas relative">
+            <button class="md:hidden offcanvas-btn"><i class="bi bi-list"></i></button>
+            <div class="offcanvas-content absolute w-screen bg-white h-screen top-[-40px] left-0 z-30 p-4 hidden">
+              <div class="flex justify-end">
+                <button class="close-btn"><i class="bi bi-x-lg text-3xl"></i></button>
+              </div>
+              <div class="flex flex-col gap-4 mt-10">
+                <a href="#" class="text-lg font-semibold hover:text-primary">Homme</a>
+                <a href="#" class="text-lg font-semibold hover:text-primary">Femme</a>
+                <a href="#" class="text-lg font-semibold hover:text-primary">Electroménager</a>
+                <a href="#" class="text-lg font-semibold hover:text-primary">Maison et Bureau</a>
+                <a href="#" class="text-lg font-semibold hover:text-primary">Soldes</a>
+                <a href="#" class="text-lg font-semibold hover:text-primary">Best sellers</a>
+                <a href="#" class="text-lg font-semibold hover:text-primary">Nouveautés</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="#">
+            <img src="assets/images/logo.png" alt="Logo" class="h-[60px]" />
+          </a>
+        </div>
+
+        <div class="relative items-center transition hidden md:flex">
+          <input
+            type="text"
+            placeholder="Search"
+            class="bg-gray-200 md:w-md rounded-full pl-[35px] pr-[45px] py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition duration-200"
+          />
+
+          <span class="absolute left-[10px] hover:text-primary transition">
+            <i class="bi bi-search"></i>
+          </span>
+          <div class="relative dropdown flex items-center">
+            <button class="cursor-pointer absolute right-[15px] hover:text-primary transition dropdown-btn">
+              <i class="bi bi-camera text-xl"></i>
+            </button>
+            <div
+              class="dropdown-content absolute w-[200px] bg-white shadow-md border border-gray-300 rounded p-4 top-[20px] right-[-70px] flex justify-center align-center hidden"
+            >
+              <label for="file-upload" class="cursor-pointer hover:text-primary"><i class="bi bi-plus-circle"></i> Importer une image</label>
+              <input id="file-upload" type="file" class="hidden" />
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-3 items-center">
+          <a href="#" class="md:hidden hover:text-primary"><i class="bi bi-search"></i></a>
+          <a href="#" class="relative hover:text-primary"
+            ><i class="bi bi-cart"></i><span class="text-[10px] absolute top-[-4px] right-[-6px] bg-primary text-white rounded-[50%] px-1">0</span></a
+          >
+          <a href="#" class="relative hover:text-primary"
+            ><i class="bi bi-heart"></i><span class="text-[10px] absolute top-[-4px] right-[-6px] bg-primary text-white rounded-[50%] px-1">0</span></a
+          >
+          <div class="dropdown relative hidden md:flex items-center">
+            <button class="cursor-pointer hover:text-primary dropdown-btn"><i class="bi bi-person text-xl"></i></button>
+            <div
+              class="flex flex-col bg-white shadow-md border-gray-300 absolute w-[150px] bottom-[-120px] left-[-62px] p-2 gap-2 dropdown-content border rounded hidden"
+            >
+              <a href="#" class="w-full hover:text-primary">Mon compte</a>
+              <a href="#" class="w-full hover:text-primary">Mes commandes</a>
+              <a href="#" class="w-full hover:text-primary">Mes préférences</a>
+            </div>
+          </div>
+          <a href="#" class="md:hidden"><i class="bi bi-person"></i></a>
+        </div>
+      </nav>
+      <div class="items-center py-2 hidden md:flex">
+        <div class="w-[20%] flex justify-center border-e border-gray-300 relative dropdown">
+          <button class="bg-gray-200 px-4 py-2 rounded cursor-pointer hover:bg-gray-300 dropdown-btn">
+            <i class="bi bi-list"></i> Categories <i class="bi bi-chevron-down"></i>
+          </button>
+          <div
+            class="dropdown-content absolute w-screen grid grid-cols-4 justify-around items-center border border-gray-300 bg-white shadow-md z-25 top-[40px] left-0 p-4 hidden"
+          >
+            <div class="text-center">
+              <a href="#" class="text-sm font-semibold text-heading uppercase">Mode Homme</a>
+              <ul class="flex flex-col gap-4 items-center">
+                <li>
+                  <a href="#" class="hover:text-primary">T-shirts</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Chemises</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Pantalons</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Chaussures</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Montres</a>
+                </li>
+              </ul>
+            </div>
+            <div class="text-center">
+              <a href="#" class="text-sm font-semibold text-heading uppercase">Mode Femme</a>
+              <ul class="flex flex-col gap-4 items-center">
+                <li>
+                  <a href="#" class="hover:text-primary">Robes</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Hauts et chemisiers</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Sacs à main</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Talons</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Bijoux</a>
+                </li>
+              </ul>
+            </div>
+            <div class="text-center">
+              <a href="#" class="text-sm font-semibold text-heading uppercase">Electroniques</a>
+              <ul class="flex flex-col gap-4 items-center">
+                <li>
+                  <a href="#" class="hover:text-primary">Smartphones</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Ordinateurs</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Smart watch</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Cameras</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Accessoires</a>
+                </li>
+              </ul>
+            </div>
+            <div class="text-center">
+              <a href="#" class="text-sm font-semibold text-heading uppercase">Maison & Cuisine</a>
+              <ul class="flex flex-col gap-4 items-center">
+                <li>
+                  <a href="#" class="hover:text-primary">Meubles</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Canapés</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Four</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Fournitures de nettoyage</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-primary">Lits</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="w-[70%]">
+          <ul class="flex gap-6 pl-5">
+            <li><a href="#" class="hover:text-primary">Homme</a></li>
+            <li><a href="#" class="hover:text-primary">Femme</a></li>
+            <li><a href="#" class="hover:text-primary">Electroménager</a></li>
+            <li><a href="#" class="hover:text-primary">Soldes</a></li>
+            <li><a href="#" class="hover:text-primary">Offres Ramadan</a></li>
+            <li><a href="#" class="hover:text-primary">Offres saint Valentin</a></li>
+            <li><a href="#" class="hover:text-primary">Best sellers</a></li>
+            <li><a href="#" class="hover:text-primary">Nouveautés</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+  </body>
 </html>
