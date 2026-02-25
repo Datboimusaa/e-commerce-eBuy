@@ -17,11 +17,12 @@ export const ajouterAuPanier = (produit) => {
   }
 
   const commande = {
-    id: crypto.randomUUID(),
+    id: produit.id,
     produitId: produit.id,
-    nom: produit.nomProduit,
+    nomProduit: produit.nomProduit || produit.nom,
     prix: produit.prix,
-    image: produit.urlImage,
+    urlImage: produit.urlImage || produit.image,
+    vendeurId: produit.vendeurId,
     quantite: 1,
   };
 

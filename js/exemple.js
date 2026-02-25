@@ -84,7 +84,7 @@ if (userIcon) {
     if (session) {
       window.open('./admin.html', '_blank');
     } else {
-      window.location.href = 'profile.html';
+      window.location.href = './profile.html'; // ./ la faatei wone fii
     }
   });
 }

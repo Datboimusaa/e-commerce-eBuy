@@ -11,7 +11,11 @@
     <title>Document</title>
   </head>
   <body class="bg-gray-100 flex h-screen text-gray-800 font-sans overflow-hidden">
-    <aside class="w-64 bg-white flex flex-col shadow-lg">
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden lg:hidden"></div>
+    <aside
+      id="sidebar"
+      class="w-64 bg-white flex flex-col shadow-lg fixed inset-y-0 left-0 z-50 transform -translate-x-full transition-transform duration-300 lg:translate-x-0 lg:static lg:inset-0"
+    >
       <div class="h-16 flex items-center px-6">
         <div class="bg-[#8E5F44] text-white p-2 rounded-lg mr-3">
           <i class="fas fa-box-open"></i>
@@ -42,23 +46,23 @@
     <main class="flex-1 flex flex-col h-screen overflow-y-auto">
       <header class="h-16 bg-white flex items-center justify-between px-8 shadow-sm relative p-10">
         <div class="flex items-center">
-          <button class="text-gray-500 mr-4 focus:outline-none lg:hidden">
-            <i class="fas fa-bars"></i>
+          <button id="open-sidebar" class="text-gray-500 mr-4 focus:outline-none lg:hidden">
+            <i class="fas fa-bars text-2xl"></i>
           </button>
         </div>
+
         <div class="flex items-center space-x-6">
           <div class="flex items-center space-x-3 cursor-pointer">
             <i class="fa-solid fa-circle-user text-3xl text-[#8E5F44]"></i>
-            <div class="hidden md:block text-sm">
+            <div class="hidden sm:block text-sm">
               <p id="nomBoutique" class="font-bold text-xl text-gray-800"></p>
               <p class="text-gray-500 text-xs">Vendeur</p>
             </div>
           </div>
         </div>
       </header>
-
       <div id="page01" class="p-8 space-y-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
           <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
             <div class="flex justify-between items-start mb-4">
               <div class="bg-blue-100 text-blue-600 p-3 rounded-lg">
@@ -75,14 +79,14 @@
               </div>
               <h3 id="nombreStock" class="text-3xl font-bold text-gray-800"></h3>
             </div>
-            <p class="text-gray-500 text-sm mb-1">Stock</p>
+            <p class="text-gray-500 text-sm mb-1">Total Stock</p>
           </div>
           <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
             <div class="flex justify-between items-start mb-4">
               <div class="bg-red-100 text-red-600 p-3 rounded-lg">
                 <i class="fa-solid fa-cart-shopping"></i>
               </div>
-              <h3 class="text-3xl font-bold text-gray-800">89</h3>
+              <h3 id="nbCommandes" class="text-3xl font-bold text-gray-800">89</h3>
             </div>
             <p class="text-gray-500 text-sm mb-1">Commandes Validées</p>
           </div>
@@ -91,7 +95,7 @@
               <div class="bg-purple-100 text-purple-600 p-3 rounded-lg">
                 <i class="fas fa-folder fa-lg"></i>
               </div>
-              <h3 class="text-3xl font-bold text-gray-800">48</h3>
+              <h3 id="revenuTotal" class="text-3xl font-bold text-gray-800">48</h3>
             </div>
             <p class="text-gray-500 text-sm mb-1">Revenu Total</p>
           </div>
@@ -102,18 +106,17 @@
             <div class="flex justify-between items-center p-6 border-b border-gray-100 bg-white">
               <h2 class="text-lg font-bold text-[#8E5F44]">Produits Récents</h2>
             </div>
-            <div class="overflow-x-auto overflow-y-auto max-h-125">
-              <table class="w-full text-left border-collapse relative">
+            <div class="overflow-x-auto overflow-y-auto max-h-125 custom-scrollbar">
+              <table class="w-full min-w-175 text-left border-collapse relative">
                 <thead class="sticky top-0 z-10 bg-gray-50 shadow-sm">
-                  <tr class="text-gray-500 text-xs uppercase border-b border-gray-100">
-                    <th class="p-4 font-semibold tracking-wider">Produit</th>
-                    <th class="p-4 font-semibold tracking-wider">Prix</th>
-                    <th class="p-4 font-semibold tracking-wider">Stock</th>
-                    <th class="p-4 font-semibold tracking-wider text-center">Catégorie</th>
-                    <th class="p-4 font-semibold tracking-wider text-right">Action</th>
+                  <tr class="text-gray-500 text-[10px] uppercase border-b border-gray-100">
+                    <th class="p-4 font-bold tracking-widest">Produit</th>
+                    <th class="p-4 font-bold tracking-widest">Prix</th>
+                    <th class="p-4 font-bold tracking-widest">Stock</th>
+                    <th class="p-4 font-bold tracking-widest text-center">Catégorie</th>
+                    <th class="p-4 font-bold tracking-widest text-right">Action</th>
                   </tr>
                 </thead>
-
                 <tbody id="lesProduits" class="text-sm divide-y divide-gray-100 bg-white"></tbody>
               </table>
             </div>
@@ -219,8 +222,8 @@
             <button class="bg-[#8a5a44] hover:opacity-90 text-white px-5 py-2.5 text-sm font-medium transition-colors">Rechercher</button>
           </div>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[75vh]">
-          <div class="lg:col-span-2 bg-white rounded-xl shadow-sm overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 h-auto">
+          <div class="lg:col-span-2 bg-white h-140 rounded-xl shadow-sm overflow-hidden">
             <div class="flex justify-between items-center p-6 border-b border-gray-100">
               <h2 class="text-lg font-bold text-[#8E5F44]">Fournisseurs</h2>
             </div>
@@ -249,6 +252,63 @@
                     </td>
                     <td class="p-4 text-gray-600">babamboup697@gmail.com</td>
                     <td class="p-4 text-gray-600">300</td>
+                    <td class="font-bold text-green-700 text-center text-md">actif</td>
+                    <td class="p-4 text-gray-800 text-right">
+                      <div class="flex justify-end gap-5">
+                        <i class="fa-solid fa-pen-fancy text-xl cursor-pointer"></i>
+                        <i class="fa-solid fa-trash text-xl cursor-pointer"></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="p-4 flex items-center space-x-4">
+                      <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
+                        <i class="fa-solid fa-user"></i>
+                      </div>
+                      <div>
+                        <span class="font-medium text-gray-800 block">Baba der</span>
+                      </div>
+                    </td>
+                    <td class="p-4 text-gray-600">babader@gmail.com</td>
+                    <td class="p-4 text-gray-600">15</td>
+                    <td class="font-bold text-green-700 text-center text-md">actif</td>
+                    <td class="p-4 text-gray-800 text-right">
+                      <div class="flex justify-end gap-5">
+                        <i class="fa-solid fa-pen-fancy text-xl cursor-pointer"></i>
+                        <i class="fa-solid fa-trash text-xl cursor-pointer"></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="p-4 flex items-center space-x-4">
+                      <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
+                        <i class="fa-solid fa-user"></i>
+                      </div>
+                      <div>
+                        <span class="font-medium text-gray-800 block">Babacar Mboup</span>
+                      </div>
+                    </td>
+                    <td class="p-4 text-gray-600">babamboup697@gmail.com</td>
+                    <td class="p-4 text-gray-600">190</td>
+                    <td class="font-bold text-green-700 text-center text-md">actif</td>
+                    <td class="p-4 text-gray-800 text-right">
+                      <div class="flex justify-end gap-5">
+                        <i class="fa-solid fa-pen-fancy text-xl cursor-pointer"></i>
+                        <i class="fa-solid fa-trash text-xl cursor-pointer"></i>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="p-4 flex items-center space-x-4">
+                      <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
+                        <i class="fa-solid fa-user"></i>
+                      </div>
+                      <div>
+                        <span class="font-medium text-gray-800 block">Ndongo Ndiaye</span>
+                      </div>
+                    </td>
+                    <td class="p-4 text-gray-600">ndongo@gmail.com</td>
+                    <td class="p-4 text-gray-600">40</td>
                     <td class="font-bold text-green-700 text-center text-md">actif</td>
                     <td class="p-4 text-gray-800 text-right">
                       <div class="flex justify-end gap-5">
@@ -304,6 +364,102 @@
             </form>
           </div>
         </div>
+      </div>
+      <div id="page03" class="hidden px-8 pt-4 pb-3 space-y-8">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-800">📦 Mes Commandes</h2>
+          <p class="text-gray-500 mt-2">Gérez les achats de vos clients et préparez les livraisons.</p>
+        </div>
+
+        <div id="conteneurCommandes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+
+      <div>
+        <dialog id="modalModification" class="modal">
+          <div class="modal-box bg-white rounded-2xl max-w-2xl">
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-4 top-4 text-gray-500 hover:bg-gray-100">✕</button>
+            </form>
+
+            <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3 border-gray-100">
+              <i class="fa-solid fa-pen-fancy text-[#8E5F44] mr-2"></i> Modifier le produit
+            </h3>
+
+            <form id="formEditProduit" class="space-y-4">
+              <input type="hidden" id="editId" />
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Nom du produit</label>
+                <input
+                  type="text"
+                  id="editNom"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">URL de l'image</label>
+                <input
+                  type="url"
+                  id="editImage"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                  required
+                />
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-600 mb-1">Prix (FCFA)</label>
+                  <input
+                    type="number"
+                    id="editPrix"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                    required
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-600 mb-1">Stock</label>
+                  <input
+                    type="number"
+                    id="editStock"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Catégorie</label>
+                <input
+                  type="text"
+                  id="editCategorie"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">Description</label>
+                <textarea
+                  id="editDescription"
+                  rows="3"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8E5F44] transition"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-gray-100">
+                <form method="dialog">
+                  <button class="px-6 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition">Annuler</button>
+                </form>
+                <button type="submit" class="px-6 py-2.5 rounded-xl bg-[#8E5F44] text-white font-medium hover:bg-amber-700 transition shadow-md">
+                  Enregistrer les modifications
+                </button>
+              </div>
+            </form>
+          </div>
+        </dialog>
       </div>
     </main>
     <script src="./js/admin.js"></script>
