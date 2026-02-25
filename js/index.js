@@ -32,6 +32,18 @@ closeBtn.addEventListener('click', () => {
 })
 
 
+// search input
+
+let searchterm = '';
+
+const searchInput = document.getElementById('search-input').addEventListener('keydown', (event) => {
+  if (event.key === 'Enter')  {
+    window.location.href = 'products.html'
+    searchterm = searchInput.value.toLowerCase();
+  }
+    
+})
+
 // ------------------------------------------------ Hero Carousel ------------------------------------------------ //
 
 const slider = document.getElementById('slider');
@@ -166,6 +178,18 @@ const nombreSurPanier = () => {
     totalPan.textContent = data.length;
   }
 };
+
+
+document.getElementById('accountBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    const session = localStorage.getItem('vendeurConnecte');
+    if(session) {
+        window.open('./admin.html', '_blank');
+    } else {
+        window.location.href = 'profil.html'
+    }
+})
+
 
 getProduits();
 nombreSurPanier();
