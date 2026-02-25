@@ -19,9 +19,8 @@ const getProduits = async () => {
         <tr class="hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0">
           <td class="p-4 flex items-center space-x-4 min-w-62.5">
             <div class="w-12 h-12 bg-gray-100 rounded-lg shrink-0 flex items-center justify-center text-gray-500 overflow-hidden border border-gray-100">
-              <img src="${produit.urlImage || 'https://via.placeholder.com/50'}" 
+              <img src="${produit.urlImage}" 
                   class="w-full h-full object-cover" 
-                  onerror="this.src='https://via.placeholder.com/50'"
                   alt="">
             </div>
             <div>
@@ -33,8 +32,8 @@ const getProduits = async () => {
           <td class="p-4 text-gray-600 font-medium whitespace-nowrap">${produit.prix} FCFA</td>
           
           <td class="p-4 text-center">
-            <span class="px-2 py-1 ${produit.stock > 5 ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'} rounded-md text-xs font-bold">
-              ${produit.stock} en stock
+            <span class="px-2 py-1 ${produit.status === 'en_attente' ? ' bg-red-50 text-red-700' : 'bg-green-50 text-green-700'} rounded-md text-xs font-bold">
+              ${produit.status} 
             </span>
           </td>
 
@@ -128,6 +127,7 @@ formProduit.addEventListener('submit', async (e) => {
       description: document.getElementById('description').value,
       vendeurId: sessionVendeur.id,
       vendeurNom: sessionVendeur.nom,
+      status: 'en_attente',
     };
 
     const response = await fetch(API_URL, {

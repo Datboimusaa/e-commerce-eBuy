@@ -266,19 +266,12 @@ import { ajouterAuPanier, fetchLocal, saveLocal } from './cartLogique.js';
 
 let produitsDisponibles = [];
 
-const rechercheProduits = () => {
-  const input = document.getElementById('idSearch');
-  if (input) {
-    getProduits(input.value);
-  }
-};
-
-const getProduits = async (searchProduit = '') => {
-  const finalUrl = searchProduit ? `${API_URL}?search=${searchProduit}` : API_URL;
+const getProduits = async () => {
   try {
-    const response = await fetch(finalUrl);
+    const response = await fetch(API_URL);
     const produits = await response.json();
-    const APIProducts = produits.reverse();
+    const APIProducts = produits.reverse().filter((p) => p.status === 'publie');
+
     produitsDisponibles = [...staticProducts, ...APIProducts];
     const params = new URLSearchParams(window.location.search);
     const selectedCategory = params.get('category');
@@ -298,7 +291,7 @@ const getProduits = async (searchProduit = '') => {
     }
     const lesProduits = document.getElementById('lesProduits');
     let pros = '';
-    produitsDisponibles.forEach((produit) => {
+    filteredProducts.forEach((produit) => {
       pros += `
         <div class="lg:w-75 bg-white  rounded-xl border border-gray-200 shadow-lg overflow-hidden p-2">
           <div class="relative bg-primary-purple rounded-2xl mb-4 p-4 flex justify-center items-center h-56">
@@ -573,5 +566,3 @@ closeBtn.addEventListener('click', () => {
   const offcanvasContent = document.querySelector('.offcanvas-content');
   offcanvasContent.classList.add('hidden');
 });
-
-window.rechercheProduits = rechercheProduits;

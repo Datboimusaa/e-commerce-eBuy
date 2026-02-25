@@ -3,46 +3,44 @@
 // Header dropdowns
 const dropdownBtn = document.querySelectorAll('.dropdown-btn');
 
-dropdownBtn.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const dropdown = btn.nextElementSibling;
+dropdownBtn.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const dropdown = btn.nextElementSibling;
 
-        document.querySelectorAll('.dropdown-content').forEach(menu => {
-            if (menu !== dropdown) {
-                menu.classList.add('hidden');
-            }
-        });
-
-        dropdown.classList.toggle('hidden');
+    document.querySelectorAll('.dropdown-content').forEach((menu) => {
+      if (menu !== dropdown) {
+        menu.classList.add('hidden');
+      }
     });
+
+    dropdown.classList.toggle('hidden');
+  });
 });
 
 // Header Offcanvas
-const offcanvasBtn = document.querySelector('.offcanvas-btn')
+const offcanvasBtn = document.querySelector('.offcanvas-btn');
 
 offcanvasBtn.addEventListener('click', () => {
-    const dropdownContent = offcanvasBtn.nextElementSibling;
-    dropdownContent.classList.remove('hidden');
-})
+  const dropdownContent = offcanvasBtn.nextElementSibling;
+  dropdownContent.classList.remove('hidden');
+});
 
-const closeBtn = document.querySelector('.close-btn')
+const closeBtn = document.querySelector('.close-btn');
 closeBtn.addEventListener('click', () => {
-    const offcanvasContent = document.querySelector('.offcanvas-content');
-    offcanvasContent.classList.add('hidden');
-})
-
+  const offcanvasContent = document.querySelector('.offcanvas-content');
+  offcanvasContent.classList.add('hidden');
+});
 
 // search input
 
 let searchterm = '';
 
 const searchInput = document.getElementById('search-input').addEventListener('keydown', (event) => {
-  if (event.key === 'Enter')  {
-    window.location.href = `products.html`
+  if (event.key === 'Enter') {
+    window.location.href = `products.html`;
     searchterm = searchInput.value.toLowerCase();
   }
-    
-})
+});
 
 // ------------------------------------------------ Hero Carousel ------------------------------------------------ //
 
@@ -59,51 +57,49 @@ let autoSlide;
 let isPaused = false;
 
 function slide(i) {
-    slider.style.transform = `translateX(-${i * 100}%)`;
+  slider.style.transform = `translateX(-${i * 100}%)`;
 }
 
 nextBtn.addEventListener('click', () => {
-    index++;
-    if (index >= totalSlides) {
-        index = 0;
-    }
-    slide(index);
-})
+  index++;
+  if (index >= totalSlides) {
+    index = 0;
+  }
+  slide(index);
+});
 
 prevBtn.addEventListener('click', () => {
-    index--;
-    if (index < 0) {
-        index = totalSlides - 1;
-    }
-    slide(index);
-})
+  index--;
+  if (index < 0) {
+    index = totalSlides - 1;
+  }
+  slide(index);
+});
 
 function startAutoSlide() {
-    autoSlide = setInterval(() => {
-        index++;
-        if (index >= totalSlides) {
-            index = 0;
-        }
-        slide(index);
-    }, 7000)
+  autoSlide = setInterval(() => {
+    index++;
+    if (index >= totalSlides) {
+      index = 0;
+    }
+    slide(index);
+  }, 7000);
 }
 startAutoSlide();
 
-pauseBtn.addEventListener("click", () => {
-    if (!isPaused) {
-        clearInterval(autoSlide);
-        pauseBtn.innerHTML = '<i class="bi bi-play"></i>';
-        isPaused = true;
-    } else {
-        startAutoSlide();
-        pauseBtn.innerHTML = '<i class="bi bi-pause"></i>';
-        isPaused = false;
-    }
+pauseBtn.addEventListener('click', () => {
+  if (!isPaused) {
+    clearInterval(autoSlide);
+    pauseBtn.innerHTML = '<i class="bi bi-play"></i>';
+    isPaused = true;
+  } else {
+    startAutoSlide();
+    pauseBtn.innerHTML = '<i class="bi bi-pause"></i>';
+    isPaused = false;
+  }
 });
 
-
 // --------------------------------------Produits--------------------------------------//
-
 
 const HOME_API_URL = 'https://699cc75983e60a406a446756.mockapi.io/produits';
 
@@ -179,17 +175,15 @@ const nombreSurPanier = () => {
   }
 };
 
-
 document.getElementById('accountBtn').addEventListener('click', (e) => {
-    e.preventDefault();
-    const session = localStorage.getItem('vendeurConnecte');
-    if(session) {
-        window.open('./admin.html', '_blank');
-    } else {
-        window.location.href = 'profile.html'
-    }
-})
-
+  e.preventDefault();
+  const session = localStorage.getItem('vendeurConnecte');
+  if (session) {
+    window.open('./admin.html', '_blank');
+  } else {
+    window.location.href = 'profile.html';
+  }
+});
 
 getProduits();
 nombreSurPanier();
