@@ -1,194 +1,197 @@
 const API_URL = 'https://699cc75983e60a406a446756.mockapi.io/produits';
 
 const staticProducts = [
+  /* MODE HOMME */
 
-/* MODE HOMME */
+  {
+    id: 'sh1',
+    nomProduit: 'T-shirt Noir Homme',
+    prix: 8000,
+    urlImage: 'https://i.imgur.com/8Km9tLL.jpg',
+    category: 'mode-homme',
+    subcategory: 'tshirt',
+    tags: ['ramadan'],
+  },
 
-{
-id: "sh1",
-nomProduit: "T-shirt Noir Homme",
-prix: 8000,
-urlImage: "https://i.imgur.com/8Km9tLL.jpg",
-category: "mode-homme",
-subcategory: "tshirt",
-tags: ["ramadan"]
-},
+  {
+    id: 'sh2',
+    nomProduit: 'T-shirt Blanc Homme',
+    prix: 7500,
+    urlImage: 'https://i.imgur.com/9XqQZ3D.jpg',
+    category: 'mode-homme',
+    subcategory: 'tshirt',
+    tags: ['valentin'],
+  },
 
-{
-id: "sh2",
-nomProduit: "T-shirt Blanc Homme",
-prix: 7500,
-urlImage: "https://i.imgur.com/9XqQZ3D.jpg",
-category: "mode-homme",
-subcategory: "tshirt",
-tags: ["valentin"]
-},
+  {
+    id: 'jh1',
+    nomProduit: 'Jean Slim Homme',
+    prix: 15000,
+    urlImage: 'https://i.imgur.com/FYb9QkR.jpg',
+    category: 'mode-homme',
+    subcategory: 'jeans',
+    tags: [],
+  },
 
-{
-id: "jh1",
-nomProduit: "Jean Slim Homme",
-prix: 15000,
-urlImage: "https://i.imgur.com/FYb9QkR.jpg",
-category: "mode-homme",
-subcategory: "jeans",
-tags: []
-},
+  {
+    id: 'jh2',
+    nomProduit: 'Jean Bleu Homme',
+    prix: 16000,
+    urlImage: 'https://i.imgur.com/xDBo7nM.jpg',
+    category: 'mode-homme',
+    subcategory: 'jeans',
+    tags: ['ramadan'],
+  },
 
-{
-id: "jh2",
-nomProduit: "Jean Bleu Homme",
-prix: 16000,
-urlImage: "https://i.imgur.com/xDBo7nM.jpg",
-category: "mode-homme",
-subcategory: "jeans",
-tags: ["ramadan"]
-},
+  /* MODE FEMME */
 
+  {
+    id: 'sf1',
+    nomProduit: 'Robe Fleurie',
+    prix: 18000,
+    urlImage: 'https://i.imgur.com/ZANVnHE.jpg',
+    category: 'mode-femme',
+    subcategory: 'robes',
+    tags: ['valentin'],
+  },
 
-/* MODE FEMME */
+  {
+    id: 'sf2',
+    nomProduit: 'Robe Rouge',
+    prix: 20000,
+    urlImage: 'https://i.imgur.com/v6KQF4p.jpg',
+    category: 'mode-femme',
+    subcategory: 'robes',
+    tags: [],
+  },
 
-{
-id: "sf1",
-nomProduit: "Robe Fleurie",
-prix: 18000,
-urlImage: "https://i.imgur.com/ZANVnHE.jpg",
-category: "mode-femme",
-subcategory: "robes",
-tags: ["valentin"]
-},
+  {
+    id: 'tsf1',
+    nomProduit: 'T-shirt Femme Rose',
+    prix: 7000,
+    urlImage: 'https://i.imgur.com/MY6Z9Yd.jpg',
+    category: 'mode-femme',
+    subcategory: 'tshirt',
+    tags: ['valentin'],
+  },
 
-{
-id: "sf2",
-nomProduit: "Robe Rouge",
-prix: 20000,
-urlImage: "https://i.imgur.com/v6KQF4p.jpg",
-category: "mode-femme",
-subcategory: "robes",
-tags: []
-},
+  {
+    id: 'tsf2',
+    nomProduit: 'T-shirt Femme Blanc',
+    prix: 6500,
+    urlImage: 'https://i.imgur.com/TaF7JkM.jpg',
+    category: 'mode-femme',
+    subcategory: 'tshirt',
+    tags: [],
+  },
 
-{
-id: "tsf1",
-nomProduit: "T-shirt Femme Rose",
-prix: 7000,
-urlImage: "https://i.imgur.com/MY6Z9Yd.jpg",
-category: "mode-femme",
-subcategory: "tshirt",
-tags: ["valentin"]
-},
+  /* ELECTRONIQUES */
 
-{
-id: "tsf2",
-nomProduit: "T-shirt Femme Blanc",
-prix: 6500,
-urlImage: "https://i.imgur.com/TaF7JkM.jpg",
-category: "mode-femme",
-subcategory: "tshirt",
-tags: []
-},
+  {
+    id: 'e1',
+    nomProduit: 'Casque Bluetooth',
+    prix: 25000,
+    urlImage: 'https://i.imgur.com/3tVgsra.jpg',
+    category: 'electroniques',
+    subcategory: 'audio',
+    tags: [],
+  },
 
+  {
+    id: 'e2',
+    nomProduit: 'Ecouteurs Sans Fil',
+    prix: 15000,
+    urlImage: 'https://i.imgur.com/Ig9o4kU.jpg',
+    category: 'electroniques',
+    subcategory: 'audio',
+    tags: ['ramadan'],
+  },
 
-/* ELECTRONIQUES */
+  {
+    id: 'e3',
+    nomProduit: 'Smartphone Android',
+    prix: 120000,
+    urlImage: 'https://i.imgur.com/Ba8Yz6D.jpg',
+    category: 'electroniques',
+    subcategory: 'phones',
+    tags: [],
+  },
 
-{
-id: "e1",
-nomProduit: "Casque Bluetooth",
-prix: 25000,
-urlImage: "https://i.imgur.com/3tVgsra.jpg",
-category: "electroniques",
-subcategory: "audio",
-tags: []
-},
+  {
+    id: 'e4',
+    nomProduit: 'Montre Connectée',
+    prix: 30000,
+    urlImage: 'https://i.imgur.com/6dXGQF7.jpg',
+    category: 'electroniques',
+    subcategory: 'wearables',
+    tags: ['valentin'],
+  },
 
-{
-id: "e2",
-nomProduit: "Ecouteurs Sans Fil",
-prix: 15000,
-urlImage: "https://i.imgur.com/Ig9o4kU.jpg",
-category: "electroniques",
-subcategory: "audio",
-tags: ["ramadan"]
-},
+  /* MAISON CUISINE */
 
-{
-id: "e3",
-nomProduit: "Smartphone Android",
-prix: 120000,
-urlImage: "https://i.imgur.com/Ba8Yz6D.jpg",
-category: "electroniques",
-subcategory: "phones",
-tags: []
-},
+  {
+    id: 'm1',
+    nomProduit: 'Blender',
+    prix: 22000,
+    urlImage: 'https://i.imgur.com/Y6XQK6p.jpg',
+    category: 'maison-cuisine',
+    subcategory: 'appliances',
+    tags: ['ramadan'],
+  },
 
-{
-id: "e4",
-nomProduit: "Montre Connectée",
-prix: 30000,
-urlImage: "https://i.imgur.com/6dXGQF7.jpg",
-category: "electroniques",
-subcategory: "wearables",
-tags: ["valentin"]
-},
+  {
+    id: 'm2',
+    nomProduit: 'Mixeur',
+    prix: 20000,
+    urlImage: 'https://i.imgur.com/jEXFQ7W.jpg',
+    category: 'maison-cuisine',
+    subcategory: 'appliances',
+    tags: [],
+  },
 
+  {
+    id: 'm3',
+    nomProduit: 'Set Assiettes',
+    prix: 15000,
+    urlImage: 'https://i.imgur.com/6YV9Z6U.jpg',
+    category: 'maison-cuisine',
+    subcategory: 'vaisselle',
+    tags: [],
+  },
 
-/* MAISON CUISINE */
-
-{
-id: "m1",
-nomProduit: "Blender",
-prix: 22000,
-urlImage: "https://i.imgur.com/Y6XQK6p.jpg",
-category: "maison-cuisine",
-subcategory: "appliances",
-tags: ["ramadan"]
-},
-
-{
-id: "m2",
-nomProduit: "Mixeur",
-prix: 20000,
-urlImage: "https://i.imgur.com/jEXFQ7W.jpg",
-category: "maison-cuisine",
-subcategory: "appliances",
-tags: []
-},
-
-{
-id: "m3",
-nomProduit: "Set Assiettes",
-prix: 15000,
-urlImage: "https://i.imgur.com/6YV9Z6U.jpg",
-category: "maison-cuisine",
-subcategory: "vaisselle",
-tags: []
-},
-
-{
-id: "m4",
-nomProduit: "Poêle Cuisine",
-prix: 12000,
-urlImage: "https://i.imgur.com/3XQ9Z6J.jpg",
-category: "maison-cuisine",
-subcategory: "ustensiles",
-tags: ["ramadan"]
-}
-
+  {
+    id: 'm4',
+    nomProduit: 'Poêle Cuisine',
+    prix: 12000,
+    urlImage: 'https://i.imgur.com/3XQ9Z6J.jpg',
+    category: 'maison-cuisine',
+    subcategory: 'ustensiles',
+    tags: ['ramadan'],
+  },
 ];
 
 import { ajouterAuPanier, fetchLocal, saveLocal } from './cartLogique.js';
 
 let produitsDisponibles = [];
 
-const getProduits = async () => {
+const rechercheProduits = () => {
+  const input = document.getElementById('idSearch');
+  if (input) {
+    getProduits(input.value);
+  }
+};
+
+const getProduits = async (searchProduit = '') => {
+  const finalUrl = searchProduit ? `${API_URL}?search=${searchProduit}` : API_URL;
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(finalUrl);
     const produits = await response.json();
     const APIProducts = produits.reverse();
     produitsDisponibles = [...staticProducts, ...APIProducts];
 
     const lesProduits = document.getElementById('lesProduits');
     let pros = '';
-    produitsDisponibles.forEach((produit) => {
+    produitsDisponibles.reverse().forEach((produit) => {
       pros += `
         <div class="lg:w-75 bg-white  rounded-xl border border-gray-200 shadow-lg overflow-hidden p-2">
           <div class="relative bg-primary-purple rounded-2xl mb-4 p-4 flex justify-center items-center h-56">
@@ -463,3 +466,5 @@ closeBtn.addEventListener('click', () => {
   const offcanvasContent = document.querySelector('.offcanvas-content');
   offcanvasContent.classList.add('hidden');
 });
+
+window.rechercheProduits = rechercheProduits;

@@ -402,3 +402,73 @@ const toggleSidebar = () => {
 if (openBtn) openBtn.onclick = toggleSidebar;
 if (closeBtn) closeBtn.onclick = toggleSidebar;
 if (overlay) overlay.onclick = toggleSidebar;
+
+// code pour gerer les fournisseurs :
+const API_FOURNISSEURS = 'https://699dcb9c83e60a406a477403.mockapi.io/Fournisseurs';
+
+const getFournisseurs = async () => {
+  try {
+    const res = await fetch(API_FOURNISSEURS);
+    const data = await res.json();
+
+    const tableFournisseurs = document.getElementById('tableFournisseurs');
+
+    let fournisseurHTMl = '';
+    data.forEach((fournisseur) => {
+      fournisseurHTMl += `
+       <tr class="hover:bg-gray-50 transition-colors">
+          <td class="p-4 flex items-center space-x-4">
+            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div>
+              <span class="font-medium text-gray-800 block">${fournisseur.nomFournisseur}</span>
+            </div>
+          </td>
+          <td class="p-4 text-gray-600">${fournisseur.emailFournisseur}</td>
+          <td class="p-4 text-gray-600">${fournisseur.stockFournisseur}</td>
+          <td class="font-bold text-green-700 text-center text-md">actif</td>
+          <td class="p-4 text-gray-800 text-right">
+            <div class="flex justify-end gap-5">
+              <i class="fa-solid fa-pen-fancy text-xl cursor-pointer"></i>
+              <i class="fa-solid fa-trash text-xl cursor-pointer"></i>
+            </div>
+          </td>
+      </tr>
+      `;
+    });
+
+    if (tableFournisseurs) {
+      tableFournisseurs.innerHTML = fournisseurHTMl;
+    }
+  } catch (error) {
+    console.log('erreur de récupérer les fournisseurs ', error);
+  }
+};
+getFournisseurs();
+
+const formFournisseurs = document.getElementById('formFournisseurs');
+formFournisseurs.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  try {
+    const fournisseur = {
+      nomFournisseur: document.getElementById('nomFournisseur').value,
+      emailFournisseur: document.getElementById('emailFournisseur').value,
+      stockFournisseur: document.getElementById('stockFournisseur').value,
+    };
+
+    const resp = await fetch(API_FOURNISSEURS, {
+      method: 'post',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify(fournisseur),
+    });
+
+    if (resp.ok) {
+      formFournisseurs.reset();
+      alert('Fournisseurs ajouter');
+      getFournisseurs();
+    }
+  } catch (error) {
+    console.log('Erreur pour ajouter le fournisseur ', error);
+  }
+});
