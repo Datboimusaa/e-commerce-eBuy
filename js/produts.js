@@ -11,7 +11,8 @@ const staticProducts = [
     urlImage: "https://www.djellaba-homme.fr/1254-home_default/gandoura-marocaine.jpg",
     categorie: "mode-homme",
     subcategory: "tshirt",
-    tags: ["ramadan"]
+    tags: ["ramadan"],
+    motsCles: ['traditionnelle', 'brodée', 'capuche']
   },
 
   {
@@ -21,7 +22,8 @@ const staticProducts = [
     urlImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoLYZfNsdF_JryV_NbG_fr85EyAoId0ljSNQ&s",
     categorie: "mode-homme",
     subcategory: "tshirt",
-    tags: ["valentin"]
+    tags: ["valentin"],
+    motsCles: ['basique', 'coton', 'ajusté']
   },
 
   {
@@ -31,7 +33,8 @@ const staticProducts = [
     urlImage: "https://www.districenter.fr/61917-medium_default/jean-slim-gris-homme.jpg",
     categorie: "mode-homme",
     subcategory: "jeans",
-    tags: []
+    tags: [],
+    motsCles: ['ajusté', 'stretch', 'denim']
   },
 
   {
@@ -41,7 +44,8 @@ const staticProducts = [
     urlImage: "https://img01.ztat.net/article/spp-media-p1/8c3e7b7ccbe44014a13707f3c8c6a7eb/ed005151cd76404c8f093f57b223e523.jpg?imwidth=762",
     categorie: "mode-homme",
     subcategory: "jeans",
-    tags: ["ramadan"]
+    tags: ["ramadan"],
+    motsCles: ['brut', 'délavé', 'indigo']
   },
 
 
@@ -54,7 +58,8 @@ const staticProducts = [
     urlImage: "https://princesse-fleurie.com/cdn/shop/products/Robe-noire-fleurie_600x.jpg?v=1749907409",
     categorie: "mode-femme",
     subcategory: "robes",
-    tags: ["valentin"]
+    tags: ["valentin"],
+    motsCles: ['bohème', 'longue', 'imprimée']
   },
 
   {
@@ -64,7 +69,8 @@ const staticProducts = [
     urlImage: "../assets/images/hero-product-1.png",
     categorie: "mode-femme",
     subcategory: "robes",
-    tags: ["ramadan"]
+    tags: ["ramadan"],
+    motsCles: ['fluide', 'caftan', 'modeste']
   },
 
   {
@@ -74,7 +80,8 @@ const staticProducts = [
     urlImage: "https://www.dressself.com/cdn/shop/products/redeveningdress-1_8427f27e-06f0-4cfd-a160-1e97c3499b60.jpg?v=1654670950",
     categorie: "mode-femme",
     subcategory: "robes",
-    tags: []
+    tags: [],
+    motsCles: ['soirée', 'élégante', 'ajustée']
   },
 
   {
@@ -84,7 +91,8 @@ const staticProducts = [
     urlImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhjZILGqwB5iL-8d8hKl-ANilt5R6ZxwlUQQ&s",
     categorie: "mode-femme",
     subcategory: "tshirt",
-    tags: ["valentin"]
+    tags: ["valentin"],
+    motsCles: ['tshirt', 'soirée', 'élégante', 'ajustée']
   },
 
   {
@@ -94,7 +102,8 @@ const staticProducts = [
     urlImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfBKCcK-zwtxJZW-M-sIbf9cSl7jNEnrsS4w&s",
     categorie: "mode-femme",
     subcategory: "tshirt",
-    tags: []
+    tags: [],
+    motsCles: ['basique', 'coton', 'col-v']
   },
 
 
@@ -107,7 +116,8 @@ const staticProducts = [
     urlImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj2fk9mUz9uDyiv6ZFPq3VBQdl5Kqi-yqQVQ&s",
     categorie: "electroniques",
     subcategory: "audio",
-    tags: []
+    tags: ['nouveaux-produits'],
+    motsCles: ['sans-fil', 'réduction-bruit', 'autonomie']
   },
 
   {
@@ -117,7 +127,8 @@ const staticProducts = [
     urlImage: "https://www.electromenager-dakar.com/wp-content/uploads/2025/11/BD04-510x510.png.webp",
     categorie: "electroniques",
     subcategory: "audio",
-    tags: ["ramadan"]
+    tags: ["ramadan"],
+    motsCles: ['intra-auriculaire', 'antibruit', 'tactile']
   },
 
   {
@@ -127,7 +138,8 @@ const staticProducts = [
     urlImage: "https://images-cdn.ubuy.com.sa/63b46431ffafdf2f462e84a6-christmas-gifts-clearance-cbcbtwo-smart.jpg",
     categorie: "electroniques",
     subcategory: "phones",
-    tags: []
+    tags: ['best-sellers'],
+    motsCles: ['débloqué', 'oled', 'performant']
   },
 
   {
@@ -137,7 +149,8 @@ const staticProducts = [
     urlImage: "https://static.wixstatic.com/media/f16a46_de3f1121a8224d74b64ab697f27aec3a~mv2.jpg/v1/fill/w_480,h_480,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/f16a46_de3f1121a8224d74b64ab697f27aec3a~mv2.jpg",
     categorie: "electroniques",
     subcategory: "wearables",
-    tags: ["valentin"]
+    tags: ["valentin"],
+    motsCles: ['sportive', 'étanche', 'santé']
   },
 
 
@@ -150,7 +163,8 @@ const staticProducts = [
     urlImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzl8Ap-4L9EPCiEfREfWZSZAaVtjzWc3CTIw&s",
     categorie: "maison-cuisine",
     subcategory: "appliances",
-    tags: ["ramadan"]
+    tags: ["ramadan"],
+    motsCles: []
   },
 
   {
@@ -160,7 +174,8 @@ const staticProducts = [
     urlImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvGuqf6WXmZErogKS0DAyI6OsHpEIB_QxcoA&s",
     categorie: "maison-cuisine",
     subcategory: "appliances",
-    tags: []
+    tags: [],
+    motsCles: []
   },
 
   {
@@ -170,7 +185,8 @@ const staticProducts = [
     urlImage: "../assets/images/hero-product-2.png",
     categorie: "maison-cuisine",
     subcategory: "vaisselle",
-    tags: ['ramadan']
+    tags: ["ramadan"],
+    motsCles: []
   },
 
   {
@@ -180,7 +196,8 @@ const staticProducts = [
     urlImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_aLBMQUToqUqtDp1mHpZmK10vqiYry7-dGQ&s",
     categorie: "maison-cuisine",
     subcategory: "ustensiles",
-    tags: ["ramadan"]
+    tags: ["ramadan"],
+    motsCles: []
   }
 
 ];
@@ -198,6 +215,7 @@ const getProduits = async () => {
     const params = new URLSearchParams(window.location.search);
     const selectedCategory = params.get('category');
     const selectedTag = params.get('tag');
+    const selectedSearch = params.get('search');
 
     let filteredProducts = produitsDisponibles;
 
@@ -215,13 +233,38 @@ const getProduits = async () => {
         produit => Array.isArray(produit.tags) && produit.tags.some(tag => tag.toLowerCase() === tagLower)
       );
     }
+
+    // Search filter
+
+    if (selectedSearch) {
+
+      const searchLower = selectedSearch.toLowerCase();
+
+      filteredProducts = filteredProducts.filter(produit => {
+
+        const mots = Array.isArray(produit.motCles)
+          ? produit.motCles
+          : [];
+
+        return (
+          produit.nomProduit.toLowerCase().includes(searchLower)
+          ||
+          mots.some(mot =>
+            mot.toLowerCase().includes(searchLower)
+          )
+        );
+
+      });
+
+    }
+
     const lesProduits = document.getElementById('lesProduits');
     let pros = '';
     filteredProducts.forEach((produit) => {
       pros += `
-        <div class="lg:w-75 bg-white  rounded-xl border border-gray-200 shadow-lg overflow-hidden p-2">
+        <div class="bg-white  rounded-xl border border-gray-200 shadow-lg overflow-hidden p-2">
           <div class="relative bg-primary-purple rounded-2xl mb-4 p-4 flex justify-center items-center h-56">
-            <i class="bi bi-heart text-2xl text-gray-400 absolute top-4 right-4 cursor-pointer"></i>
+            <button class="heartBtn text-2xl text-gray-400 absolute top-4 right-4 cursor-pointer data-id="${produit.id}" ">❤️</button>
             <div class="w-full h-full flex items-center justify-center">
               <img src="${produit.urlImage}" alt="${produit.nomProduit}" class="max-h-55 w-60 object-contain" />
             </div>
@@ -263,10 +306,72 @@ const getProduits = async () => {
         nombreSurPanier();
       });
     });
+
+    const hearts = document.querySelectorAll('.heartBtn');
+
+    hearts.forEach((btn) => {
+      btn.addEventListener('click', () => {
+
+        const id = btn.getAttribute('data-id');
+
+        ajouterWishlist(id);
+
+      });
+    });
   } catch (error) {
     console.log("Erreur lors du chargement des produits de l'API :", error);
   }
 };
+
+const afficherWishlist = async () => {
+
+  const wishlist =
+    JSON.parse(localStorage.getItem('wishlist')) || [];
+
+  const container =
+    document.getElementById('wishlistContainer');
+
+  // Load products from API
+  const response = await fetch(API_URL);
+  const apiProduits = await response.json();
+
+  const tousProduits = [...staticProducts, ...apiProduits];
+
+  let html = '';
+
+  wishlist.forEach(id => {
+
+    const produit = tousProduits.find(p => p.id == id);
+
+    if(produit){
+
+      html += `
+
+      <div class="bg-white rounded-xl border shadow p-3">
+
+          <img src="${produit.urlImage}"
+          class="w-full h-40 object-contain">
+
+          <h2 class="text-lg font-semibold mt-2">
+          ${produit.nomProduit}
+          </h2>
+
+          <p class="text-gray-500">
+          ${produit.prix} FCFA
+          </p>
+
+      </div>
+
+      `;
+
+    }
+
+  });
+
+  container.innerHTML = html;
+
+};
+
 
 const getCommandes = () => {
   try {
@@ -321,6 +426,30 @@ const getCommandes = () => {
   }
 };
 
+const getWishlist = () => {
+  const data = localStorage.getItem('wishlist');
+  return data ? JSON.parse(data) : [];
+};
+
+const saveWishlist = (wishlist) => {
+  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+};
+
+function ajouterWishlist(id) {
+
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  // Check if already exists
+  if (!wishlist.includes(id)) {
+    wishlist.push(id);
+  }
+
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+  alert("Produit ajouté à la wishlist ❤️");
+
+}
+
 const activerPanier = () => {
   document.querySelectorAll('.btnPlus').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -373,6 +502,7 @@ const nombreSurPanier = () => {
 getProduits();
 getCommandes();
 nombreSurPanier();
+afficherWishlist();
 
 // code pour la session de l'user
 const userIcon = document.getElementById('userIcon');
