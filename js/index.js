@@ -38,7 +38,7 @@ let searchterm = '';
 
 const searchInput = document.getElementById('search-input').addEventListener('keydown', (event) => {
   if (event.key === 'Enter')  {
-    window.location.href = 'products.html'
+    window.location.href = `products.html`
     searchterm = searchInput.value.toLowerCase();
   }
     
@@ -186,7 +186,7 @@ document.getElementById('accountBtn').addEventListener('click', (e) => {
     if(session) {
         window.open('./admin.html', '_blank');
     } else {
-        window.location.href = 'profil.html'
+        window.location.href = 'profile.html'
     }
 })
 
