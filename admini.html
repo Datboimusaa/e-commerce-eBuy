@@ -24,7 +24,7 @@
       }
     </style>
   </head>
-  <body class="bg-slate-50 flex h-screen text-slate-800 overflow-hidden">
+  <body class="bg-gray-100 flex h-screen text-slate-800 overflow-hidden">
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 z-40 hidden lg:hidden backdrop-blur-sm transition-opacity"></div>
 
     <aside
@@ -48,21 +48,28 @@
 
       <div class="h-full flex flex-col justify-between">
         <div class="px-6 py-4">
-          <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Général</p>
-          <nav class="space-y-2">
+          <nav id="sidebar-menu" class="flex-1 py-6 space-y-2 overflow-y-auto">
             <a
               href="#"
               id="btn-menu-moderation"
-              class="flex items-center px-4 py-3.5 bg-brown-admin text-white rounded-xl font-bold shadow-md shadow-orange-900/20"
+              class="nav-item font-bold flex hover:bg-[#8E5F44] hover:text-white transition-all duration-240 items-center px-4 py-3 text-gray-600 rounded-lg"
             >
-              <i class="fas fa-chart-pie mr-4 text-lg w-6"></i> Vue d'ensemble
+              <i class="fas fa-th-large mr-3"></i> Tableau de bord
             </a>
             <a
               href="#"
               id="btn-menu-users"
-              class="flex items-center px-4 py-3.5 text-slate-600 rounded-xl hover:bg-brown-admin/10 hover:text-brown-admin transition-all font-bold group"
+              class="nav-item font-bold flex hover:bg-[#8E5F44] hover:text-white items-center px-4 py-3 text-gray-600 rounded-lg transition-colors"
             >
-              <i class="fas fa-users mr-4 text-lg w-6 text-slate-400 group-hover:text-brown-admin transition-colors"></i> Utilisateurs
+              <i class="fas fa-shopping-cart mr-3"></i> Utilisateurs
+            </a>
+            <a
+              target="_blank"
+              href="./product.html"
+              id="btn-menu-users"
+              class="nav-item font-bold flex hover:bg-[#8E5F44] hover:text-white items-center px-4 py-3 text-gray-600 rounded-lg transition-colors"
+            >
+              <i class="fas fa-shopping-cart mr-3"></i> Voir les produits
             </a>
           </nav>
         </div>
@@ -75,7 +82,7 @@
       </div>
     </aside>
 
-    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-slate-50">
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-gray-100">
       <header class="h-20 bg-white flex items-center justify-between px-4 lg:px-10 shadow-sm z-30 border-b border-slate-100">
         <div class="flex items-center gap-4">
           <button id="open-sidebar" class="p-3 text-slate-500 bg-slate-100 rounded-xl lg:hidden hover:bg-slate-200 transition active:scale-95">
@@ -132,6 +139,14 @@
               </div>
               <p class="text-gray-500 text-sm mb-1">Total Utilisateurs</p>
             </div>
+          </div>
+          <div class="flex justify-end">
+            <button
+              id="btnActualise"
+              class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:text-brown-admin transition font-bold text-sm shadow-sm"
+            >
+              <i class="fas fa-sync-alt"></i> Actualiser
+            </button>
           </div>
           <div class="bg-white rounded-4xl shadow-sm border border-slate-100 overflow-hidden">
             <div class="overflow-x-auto">

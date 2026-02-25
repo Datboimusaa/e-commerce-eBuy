@@ -137,7 +137,7 @@ formProduit.addEventListener('submit', async (e) => {
     });
 
     if (response.ok) {
-      alert("Produit ajouté sur l'API !");
+      alert('Produit ajouté avec succès !');
       formProduit.reset();
       getProduits();
     }
@@ -472,3 +472,6 @@ formFournisseurs.addEventListener('submit', async (e) => {
     console.log('Erreur pour ajouter le fournisseur ', error);
   }
 });
+
+const btnActualise = document.getElementById('btnActualise');
+btn;

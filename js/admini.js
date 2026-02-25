@@ -121,6 +121,10 @@ const supprimerProduit = async (id) => {
   }
 };
 
+const btnActualise = document.getElementById('btnActualise');
+btnActualise.addEventListener('click', () => {
+  fetchProduits();
+});
 // code pour gerer la navigation :
 const btnModeration = document.getElementById('btn-menu-moderation'); // Le bouton "Vue d'ensemble"
 const btnUsers = document.getElementById('btn-menu-users'); // Le bouton "Utilisateurs"
