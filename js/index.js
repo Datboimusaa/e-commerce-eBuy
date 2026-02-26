@@ -15,8 +15,6 @@ dropdownBtn.forEach(btn => {
 
     dropdown.classList.toggle('hidden');
   });
-    dropdown.classList.toggle('hidden');
-  });
 });
 
 // Header Offcanvas
