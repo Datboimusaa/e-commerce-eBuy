@@ -15,17 +15,19 @@ dropdownBtn.forEach(btn => {
 
     dropdown.classList.toggle('hidden');
   });
+    dropdown.classList.toggle('hidden');
+  });
 });
 
 // Header Offcanvas
-const offcanvasBtn = document.querySelector('.offcanvas-btn')
+const offcanvasBtn = document.querySelector('.offcanvas-btn');
 
 offcanvasBtn.addEventListener('click', () => {
   const dropdownContent = offcanvasBtn.nextElementSibling;
   dropdownContent.classList.remove('hidden');
 })
 
-const closeBtn = document.querySelector('.close-btn')
+const closeBtn = document.querySelector('.close-btn');
 closeBtn.addEventListener('click', () => {
   const offcanvasContent = document.querySelector('.offcanvas-content');
   offcanvasContent.classList.add('hidden');
@@ -64,6 +66,7 @@ let autoSlide;
 let isPaused = false;
 
 function slide(i) {
+  slider.style.transform = `translateX(-${i * 100}%)`;
   slider.style.transform = `translateX(-${i * 100}%)`;
 }
 
@@ -106,9 +109,7 @@ pauseBtn.addEventListener("click", () => {
   }
 });
 
-
 // --------------------------------------Produits--------------------------------------//
-
 
 const HOME_API_URL = 'https://699cc75983e60a406a446756.mockapi.io/produits';
 
@@ -183,7 +184,6 @@ const nombreSurPanier = () => {
     totalPan.textContent = data.length;
   }
 };
-
 
 document.getElementById('accountBtn').addEventListener('click', (e) => {
   e.preventDefault();

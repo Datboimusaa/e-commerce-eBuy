@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Master - Modération</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+      /* Couleur personnalisée */
+      .bg-brown-admin {
+        background-color: #8e5f44;
+      }
+      .text-brown-admin {
+        color: #8e5f44;
+      }
+      .hover\:bg-brown-admin\/10:hover {
+        background-color: rgba(142, 95, 68, 0.1);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 flex h-screen text-slate-800 overflow-hidden">
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 z-40 hidden lg:hidden backdrop-blur-sm transition-opacity"></div>
+
+    <aside
+      id="sidebar"
+      class="fixed inset-y-0 left-0 w-72 bg-white flex flex-col shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 lg:shadow-none border-r border-slate-100"
+    >
+      <div class="h-24 flex items-center justify-between px-8">
+        <div class="flex items-center gap-3">
+          <div class="bg-brown-admin text-white w-10 h-10 flex items-center justify-center rounded-xl shadow-lg shadow-orange-900/20">
+            <i class="fas fa-shield-cat text-lg"></i>
+          </div>
+          <div>
+            <span class="text-md font-black text-slate-900 tracking-tight block leading-none">Moussa & Babacar</span>
+            <span class="text-[10px] font-bold text-brown-admin uppercase tracking-widest">administrateur</span>
+          </div>
+        </div>
+        <button id="close-sidebar" class="lg:hidden text-slate-400 hover:text-red-500 transition">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+
+      <div class="h-full flex flex-col justify-between">
+        <div class="px-6 py-4">
+          <nav id="sidebar-menu" class="flex-1 py-6 space-y-2 overflow-y-auto">
+            <a
+              href="#"
+              id="btn-menu-moderation"
+              class="nav-item font-bold flex hover:bg-[#8E5F44] hover:text-white transition-all duration-240 items-center px-4 py-3 text-gray-600 rounded-lg"
+            >
+              <i class="fas fa-th-large mr-3"></i> Tableau de bord
+            </a>
+            <a
+              href="#"
+              id="btn-menu-users"
+              class="nav-item font-bold flex hover:bg-[#8E5F44] hover:text-white items-center px-4 py-3 text-gray-600 rounded-lg transition-colors"
+            >
+              <i class="fas fa-shopping-cart mr-3"></i> Utilisateurs
+            </a>
+            <a
+              target="_blank"
+              href="./product.html"
+              id="btn-menu-users"
+              class="nav-item font-bold flex hover:bg-[#8E5F44] hover:text-white items-center px-4 py-3 text-gray-600 rounded-lg transition-colors"
+            >
+              <i class="fas fa-shopping-cart mr-3"></i> Voir les produits
+            </a>
+          </nav>
+        </div>
+
+        <div class="p-6 border-t border-slate-100">
+          <button class="flex items-center w-57 gap-3 px-4 py-3.5 text-red-600 bg-red-100 hover:bg-red-200 rounded-2xl transition-all font-black text-sm group">
+            <i class="fas fa-power-off group-hover:rotate-90 transition-transform"></i> Déconnexion
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-gray-100">
+      <header class="h-20 bg-white flex items-center justify-between px-4 lg:px-10 shadow-sm z-30 border-b border-slate-100">
+        <div class="flex items-center gap-4">
+          <button id="open-sidebar" class="p-3 text-slate-500 bg-slate-100 rounded-xl lg:hidden hover:bg-slate-200 transition active:scale-95">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <div class="flex items-center gap-3 cursor-pointer pl-4 border-l border-slate-100">
+            <div class="text-right md:block">
+              <p class="font-black text-xl text-slate-800 leading-tight">Dashboard</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="flex-1 overflow-y-auto p-4 lg:p-10 space-y-8 custom-scrollbar">
+        <div id="section-moderation" class="space-y-8 animate-fade-in">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex justify-between items-start mb-4">
+                <div class="bg-red-100 text-red-600 p-3 rounded-lg">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <h3 id="nbCommandes" class="text-3xl font-bold text-gray-800">89</h3>
+              </div>
+              <p class="text-gray-500 text-sm mb-1">Produits en Attente</p>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex justify-between items-start mb-4">
+                <div class="bg-green-100 text-green-600 p-3 rounded-lg">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <h3 id="nombreStock" class="text-3xl font-bold text-gray-800">30</h3>
+              </div>
+              <p class="text-gray-500 text-sm mb-1">Produits Validées</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex justify-between items-start mb-4">
+                <div class="bg-blue-100 text-blue-600 p-3 rounded-lg">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <h3 id="totalAnnonce" class="text-2xl font-bold text-gray-800">30</h3>
+              </div>
+              <p class="text-gray-500 text-sm mb-1">Total Produits</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex justify-between items-start mb-4">
+                <div class="bg-purple-100 text-purple-600 p-3 rounded-lg">
+                  <i class="fas fa-folder fa-lg"></i>
+                </div>
+                <h3 id="revenuTotal" class="text-3xl font-bold text-gray-800">5</h3>
+              </div>
+              <p class="text-gray-500 text-sm mb-1">Total Utilisateurs</p>
+            </div>
+          </div>
+          <div class="flex justify-end">
+            <button
+              id="btnActualise"
+              class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:text-brown-admin transition font-bold text-sm shadow-sm"
+            >
+              <i class="fas fa-sync-alt"></i> Actualiser
+            </button>
+          </div>
+          <div class="bg-white rounded-4xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-225 text-left">
+                <thead class="bg-slate-50/80 text-slate-400 text-[11px] uppercase font-black tracking-widest border-b border-slate-100">
+                  <tr>
+                    <th class="px-8 py-5">Produit</th>
+                    <th class="px-8 py-5">Vendeur</th>
+                    <th class="px-8 py-5">Prix</th>
+                    <th class="px-8 py-5">Status</th>
+                    <th class="px-8 py-5 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="lesProduits" class="divide-y divide-slate-50"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div id="section-users" class="hidden space-y-8 animate-fade-in">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <h2 class="text-2xl font-black text-slate-800 flex items-center gap-3">
+                <i class="fas fa-users-cog text-brown-admin"></i> Gestion des Utilisateurs
+              </h2>
+              <p class="text-sm font-medium text-slate-400 mt-1">Administrez les comptes vendeurs et surveillez l'activité.</p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-4xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-225 text-left">
+                <thead class="bg-slate-50/80 text-slate-400 text-[11px] uppercase font-black tracking-widest border-b border-slate-100">
+                  <tr>
+                    <th class="px-8 py-5">Nom du Vendeur</th>
+                    <th class="px-8 py-5 text-center">Type</th>
+                    <th class="px-8 py-5 text-center">Status</th>
+                    <th class="px-8 py-5 text-right">Produits</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-50">
+                  <tr class="hover:bg-slate-50/50 transition-colors group">
+                    <td class="px-8 py-5">
+                      <div class="flex items-center gap-4">
+                        <div
+                          class="w-12 h-12 bg-brown-admin/10 rounded-full flex items-center justify-center text-brown-admin font-black border-2 border-white shadow-sm"
+                        >
+                          BM
+                        </div>
+                        <div>
+                          <span class="font-black text-slate-800 block text-base">Cheikh Sy</span>
+                          <span class="text-xs text-slate-400 font-medium">Cheikh@gmail.com</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-8 py-5">
+                      <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-[10px] font-black uppercase tracking-wider border border-blue-100">
+                        Vendeur Pro
+                      </span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-600 rounded-full text-[10px] font-black uppercase tracking-wider"
+                      >
+                        <i class="fas fa-check-circle"></i> Actif
+                      </span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                      <span class="font-black text-slate-700">15</span>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50 transition-colors group">
+                    <td class="px-8 py-5">
+                      <div class="flex items-center gap-4">
+                        <div
+                          class="w-12 h-12 bg-brown-admin/10 rounded-full flex items-center justify-center text-brown-admin font-black border-2 border-white shadow-sm"
+                        >
+                          BM
+                        </div>
+                        <div>
+                          <span class="font-black text-slate-800 block text-base">Seynabou Ndiaye</span>
+                          <span class="text-xs text-slate-400 font-medium">Seynabou.m@email.com</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-8 py-5">
+                      <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-[10px] font-black uppercase tracking-wider border border-blue-100">
+                        Vendeur Pro
+                      </span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-600 rounded-full text-[10px] font-black uppercase tracking-wider"
+                      >
+                        <i class="fas fa-check-circle"></i> Actif
+                      </span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                      <span class="font-black text-slate-700">10</span>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50 transition-colors group">
+                    <td class="px-8 py-5">
+                      <div class="flex items-center gap-4">
+                        <div
+                          class="w-12 h-12 bg-brown-admin/10 rounded-full flex items-center justify-center text-brown-admin font-black border-2 border-white shadow-sm"
+                        >
+                          BM
+                        </div>
+                        <div>
+                          <span class="font-black text-slate-800 block text-base">Kalika ba</span>
+                          <span class="text-xs text-slate-400 font-medium">Kalika@gmail.com</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-8 py-5">
+                      <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-[10px] font-black uppercase tracking-wider border border-blue-100">
+                        Vendeur Pro
+                      </span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-600 rounded-full text-[10px] font-black uppercase tracking-wider"
+                      >
+                        <i class="fas fa-check-circle"></i> Actif
+                      </span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                      <span class="font-black text-slate-700">32</span>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50 transition-colors group">
+                    <td class="px-8 py-5">
+                      <div class="flex items-center gap-4">
+                        <div
+                          class="w-12 h-12 bg-brown-admin/10 rounded-full flex items-center justify-center text-brown-admin font-black border-2 border-white shadow-sm"
+                        >
+                          BM
+                        </div>
+                        <div>
+                          <span class="font-black text-slate-800 block text-base">Abdoulahi Mbow</span>
+                          <span class="text-xs text-slate-400 font-medium">mbow@gmail.com</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-8 py-5">
+                      <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-[10px] font-black uppercase tracking-wider border border-blue-100">
+                        Vendeur Pro
+                      </span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-600 rounded-full text-[10px] font-black uppercase tracking-wider"
+                      >
+                        <i class="fas fa-check-circle"></i> Actif
+                      </span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                      <span class="font-black text-slate-700">2</span>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50 transition-colors group">
+                    <td class="px-8 py-5">
+                      <div class="flex items-center gap-4">
+                        <div
+                          class="w-12 h-12 bg-brown-admin/10 rounded-full flex items-center justify-center text-brown-admin font-black border-2 border-white shadow-sm"
+                        >
+                          BM
+                        </div>
+                        <div>
+                          <span class="font-black text-slate-800 block text-base">Madiodio Mboup</span>
+                          <span class="text-xs text-slate-400 font-medium">mbow@gmail.com</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-8 py-5">
+                      <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-[10px] font-black uppercase tracking-wider border border-blue-100">
+                        Vendeur Pro
+                      </span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-600 rounded-full text-[10px] font-black uppercase tracking-wider"
+                      >
+                        <i class="fas fa-check-circle"></i> Actif
+                      </span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                      <span class="font-black text-slate-700">12</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="p-6 border-t border-slate-50 flex justify-between items-center bg-white">
+              <p class="text-[11px] text-slate-400 font-bold uppercase tracking-widest">Total: 5 Vendeurs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="js/admini.js"></script>
+  </body>
+</html>

@@ -1,12 +1,11 @@
 const API_URL = 'https://699cc75983e60a406a446756.mockapi.io/produits';
 
 const staticProducts = [
-
   /* MODE HOMME */
 
   {
-    id: "sh1",
-    nomProduit: "Djellaba marocain",
+    id: 'sh1',
+    nomProduit: 'Djellaba marocain',
     prix: 18000,
     urlImage: "https://www.djellaba-homme.fr/1254-home_default/gandoura-marocaine.jpg",
     categorie: "mode-homme",
@@ -16,8 +15,8 @@ const staticProducts = [
   },
 
   {
-    id: "sh2",
-    nomProduit: "T-shirt Blanc Homme",
+    id: 'sh2',
+    nomProduit: 'T-shirt Blanc Homme',
     prix: 7500,
     urlImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoLYZfNsdF_JryV_NbG_fr85EyAoId0ljSNQ&s",
     categorie: "mode-homme",
@@ -27,8 +26,8 @@ const staticProducts = [
   },
 
   {
-    id: "jh1",
-    nomProduit: "Jean Slim Homme",
+    id: 'jh1',
+    nomProduit: 'Jean Slim Homme',
     prix: 15000,
     urlImage: "https://www.districenter.fr/61917-medium_default/jean-slim-gris-homme.jpg",
     categorie: "mode-homme",
@@ -38,8 +37,8 @@ const staticProducts = [
   },
 
   {
-    id: "jh2",
-    nomProduit: "Jean Bleu Homme",
+    id: 'jh2',
+    nomProduit: 'Jean Bleu Homme',
     prix: 16000,
     urlImage: "https://img01.ztat.net/article/spp-media-p1/8c3e7b7ccbe44014a13707f3c8c6a7eb/ed005151cd76404c8f093f57b223e523.jpg?imwidth=762",
     categorie: "mode-homme",
@@ -48,12 +47,11 @@ const staticProducts = [
     motsCles: ['brut', 'délavé', 'indigo']
   },
 
-
   /* MODE FEMME */
 
   {
-    id: "sf1",
-    nomProduit: "Robe Fleurie",
+    id: 'sf1',
+    nomProduit: 'Robe Fleurie',
     prix: 18000,
     urlImage: "https://princesse-fleurie.com/cdn/shop/products/Robe-noire-fleurie_600x.jpg?v=1749907409",
     categorie: "mode-femme",
@@ -63,8 +61,8 @@ const staticProducts = [
   },
 
   {
-    id: "sf2",
-    nomProduit: "Abaya marocaine",
+    id: 'sf2',
+    nomProduit: 'Abaya marocaine',
     prix: 18000,
     urlImage: "../assets/images/hero-product-1.png",
     categorie: "mode-femme",
@@ -74,8 +72,8 @@ const staticProducts = [
   },
 
   {
-    id: "sf3",
-    nomProduit: "Robe Rouge",
+    id: 'sf3',
+    nomProduit: 'Robe Rouge',
     prix: 20000,
     urlImage: "https://www.dressself.com/cdn/shop/products/redeveningdress-1_8427f27e-06f0-4cfd-a160-1e97c3499b60.jpg?v=1654670950",
     categorie: "mode-femme",
@@ -85,8 +83,8 @@ const staticProducts = [
   },
 
   {
-    id: "tsf1",
-    nomProduit: "T-shirt Femme Rose",
+    id: 'tsf1',
+    nomProduit: 'T-shirt Femme Rose',
     prix: 7000,
     urlImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhjZILGqwB5iL-8d8hKl-ANilt5R6ZxwlUQQ&s",
     categorie: "mode-femme",
@@ -105,7 +103,6 @@ const staticProducts = [
     tags: [],
     motsCles: ['basique', 'coton', 'col-v']
   },
-
 
   /* ELECTRONIQUES */
 
@@ -152,7 +149,6 @@ const staticProducts = [
     tags: ["valentin"],
     motsCles: ['sportive', 'étanche', 'santé']
   },
-
 
   /* MAISON CUISINE */
 
@@ -210,7 +206,8 @@ const getProduits = async () => {
   try {
     const response = await fetch(API_URL);
     const produits = await response.json();
-    const APIProducts = produits.reverse();
+    const APIProducts = produits.reverse().filter((p) => p.status === 'publie');
+
     produitsDisponibles = [...staticProducts, ...APIProducts];
     const params = new URLSearchParams(window.location.search);
     const selectedCategory = params.get('category');
@@ -221,9 +218,7 @@ const getProduits = async () => {
 
     // Filter by category
     if (selectedCategory) {
-      filteredProducts = filteredProducts.filter(
-        produit => produit.categorie === selectedCategory
-      );
+      filteredProducts = filteredProducts.filter((produit) => produit.categorie === selectedCategory);
     }
 
     // Filter by tag
@@ -592,3 +587,33 @@ if (formCommande) {
     }
   });
 }
+
+// Header dropdowns
+const dropdownBtn = document.querySelectorAll('.dropdown-btn');
+
+dropdownBtn.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const dropdown = btn.nextElementSibling;
+
+    document.querySelectorAll('.dropdown-content').forEach((menu) => {
+      if (menu !== dropdown) {
+        menu.classList.add('hidden');
+      }
+    });
+
+    dropdown.classList.toggle('hidden');
+  });
+});
+
+const offcanvasBtn = document.querySelector('.offcanvas-btn');
+
+offcanvasBtn.addEventListener('click', () => {
+  const dropdownContent = offcanvasBtn.nextElementSibling;
+  dropdownContent.classList.remove('hidden');
+});
+
+const closeBtn = document.querySelector('.close-btn');
+closeBtn.addEventListener('click', () => {
+  const offcanvasContent = document.querySelector('.offcanvas-content');
+  offcanvasContent.classList.add('hidden');
+});

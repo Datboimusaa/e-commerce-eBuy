@@ -46,7 +46,7 @@ btnRegister.addEventListener('click', async () => {
     return;
   }
 
-  const nouveauVendeur = { nom, email, password };
+  const nouveauVendeur = { nom, email, password, status: 'vendeur simple' };
 
   try {
     const response = await fetch(USER_API, {
