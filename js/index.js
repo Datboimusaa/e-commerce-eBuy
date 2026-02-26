@@ -65,7 +65,6 @@ let isPaused = false;
 
 function slide(i) {
   slider.style.transform = `translateX(-${i * 100}%)`;
-  slider.style.transform = `translateX(-${i * 100}%)`;
 }
 
 nextBtn.addEventListener('click', () => {
